@@ -1,0 +1,32 @@
+    Checking gmath v0.1.0 (/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/gmath)
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name gmath --edition=2018 wasm/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type cdylib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=8cd205e77cc15894 -C extra-filename=-8cd205e77cc15894 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/gmath/target/debug/deps -C incremental=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/gmath/target/debug/incremental -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/gmath/target/debug/deps -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="gmath"'`
+Number of vulnerable pointers: 36
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+12 Bug(s) detected.
+Error seed #1: (matrix3add::bb3, <NonNull, {matrix3add::_9}, {}>) in DefId(0:19 ~ gmath[8d81]::matrix3::matrix3add)
+Error seed #2: (matrix2invert::bb8, <NonNull, {matrix2invert::_28}, {}>) in DefId(0:8 ~ gmath[8d81]::matrix2::matrix2invert)
+Error seed #3: (matrix4sub::bb3, <NonNull, {matrix4sub::_9}, {}>) in DefId(0:29 ~ gmath[8d81]::matrix4::matrix4sub)
+Error seed #4: (matrix3sub::bb3, <NonNull, {matrix3sub::_9}, {}>) in DefId(0:20 ~ gmath[8d81]::matrix3::matrix3sub)
+Error seed #5: (matrix2sub::bb3, <NonNull, {matrix2sub::_9}, {}>) in DefId(0:11 ~ gmath[8d81]::matrix2::matrix2sub)
+Error seed #6: (matrix2add::bb3, <NonNull, {matrix2add::_9}, {}>) in DefId(0:10 ~ gmath[8d81]::matrix2::matrix2add)
+Error seed #7: (matrix3invert::bb19, <NonNull, {matrix3invert::_87}, {}>) in DefId(0:17 ~ gmath[8d81]::matrix3::matrix3invert)
+Error seed #8: (matrix4add::bb3, <NonNull, {matrix4add::_9}, {}>) in DefId(0:28 ~ gmath[8d81]::matrix4::matrix4add)
+Error seed #9: (matrix4mul::bb3, <NonNull, {matrix4mul::_9}, {}>) in DefId(0:27 ~ gmath[8d81]::matrix4::matrix4mul)
+Error seed #10: (matrix4invert::bb52, <NonNull, {matrix4invert::_260}, {}>) in DefId(0:26 ~ gmath[8d81]::matrix4::matrix4invert)
+Error seed #11: (matrix2mul::bb3, <NonNull, {matrix2mul::_9}, {}>) in DefId(0:9 ~ gmath[8d81]::matrix2::matrix2mul)
+Error seed #12: (matrix3mul::bb3, <NonNull, {matrix3mul::_9}, {}>) in DefId(0:18 ~ gmath[8d81]::matrix3::matrix3mul)
+Analysis time: 0.038820491 seconds
+Used Memory Before Analysis: 87 MB
+Max Memory in Analysis: 87 MB
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.35s

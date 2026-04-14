@@ -1,0 +1,44 @@
+---
+ src/lib.rs            |  2 ++
+ src/use_after_free.rs | 15 +++++++++++++++
+ 2 files changed, 17 insertions(+)
+ create mode 100644 src/use_after_free.rs
+
+diff --git a/src/lib.rs b/src/lib.rs
+index 4091e8ad..936243f0 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -179,6 +179,8 @@ pub mod schnorr;
+ #[cfg(feature = "serde")]
+ mod serde_util;
+ 
++pub mod use_after_free;
++
+ use core::marker::PhantomData;
+ use core::ptr::NonNull;
+ use core::{fmt, mem, str};
+diff --git a/src/use_after_free.rs b/src/use_after_free.rs
+new file mode 100644
+index 00000000..65b4ac67
+--- /dev/null
++++ b/src/use_after_free.rs
+@@ -0,0 +1,15 @@
++use crate::Secp256k1;
++use crate::key::{PublicKey, SecretKey};
++
++fn make_bad_secp() -> Secp256k1::<crate::AllPreallocated<'static>> {
++    // in principle `Box` is not needed but if it's not here it won't show up as a crash.
++    let mut array = Box::new([crate::ffi::types::AlignedType::ZERO; 1024]);
++    Secp256k1::<crate::AllPreallocated<'static>>::preallocated_gen_new(&mut *array).unwrap()
++}
++
++pub fn main() {
++    let secp = make_bad_secp();
++    let secret = SecretKey::from_slice(b"release the nasal daemons!!!!!!!").unwrap();
++    let pubkey = PublicKey::from_secret_key(&secp, &secret);
++    println!("Dear compiler, do not optimize this computation {}", pubkey);
++}
+\ No newline at end of file
+-- 
+2.25.1
+

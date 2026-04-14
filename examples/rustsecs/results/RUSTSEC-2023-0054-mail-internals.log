@@ -1,0 +1,454 @@
+warning: no edition set: defaulting to the 2015 edition while the latest is 2021
+   Compiling proc-macro2 v1.0.106
+   Compiling libc v0.2.182
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.44
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/proc-macro2-1.0.106/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="proc-macro"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "nightly", "proc-macro", "span-locations"))' -C metadata=aff2c23becd03660 -C extra-filename=-aff2c23becd03660 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/proc-macro2-aff2c23becd03660 -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+   Compiling syn v1.0.109
+   Compiling object v0.37.3
+   Compiling autocfg v1.5.0
+    Checking lazy_static v0.2.11
+    Checking memchr v2.8.0
+    Checking tinyvec_macros v0.1.1
+    Checking gimli v0.32.3
+   Compiling unicode-xid v0.2.6
+    Checking adler2 v2.0.1
+   Compiling failure_derive v0.1.8
+    Checking rustc-demangle v0.1.27
+    Checking quoted-string v0.6.1
+    Checking percent-encoding v1.0.1
+    Checking cfg-if v1.0.4
+    Checking byteorder v1.5.0
+    Checking unicode-bidi v0.3.18
+    Checking iana-time-zone v0.1.65
+    Checking matches v0.1.10
+    Checking safemem v0.2.0
+    Checking soft-ascii-string v1.1.0
+    Checking vec1 v1.12.1
+    Checking quoted_printable v0.4.8
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name unicode_ident --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicode-ident-1.0.24/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=dbcb95dd97773093 -C extra-filename=-dbcb95dd97773093 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.182/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no '--allow=clippy::used_underscore_binding' --allow=unused_qualifications '--warn=clippy::unnecessary_semicolon' '--allow=clippy::unnecessary_cast' '--allow=clippy::uninlined_format_args' '--warn=clippy::ptr_as_ptr' '--allow=clippy::non_minimal_cfg' '--allow=clippy::missing_safety_doc' '--warn=clippy::map_unwrap_or' '--warn=clippy::manual_assert' '--allow=clippy::identity_op' '--warn=clippy::explicit_iter_loop' '--allow=clippy::expl_impl_clone_on_copy' --cfg 'feature="default"' --cfg 'feature="std"' --cfg 'feature="use_std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("align", "const-extern-fn", "default", "extra_traits", "rustc-dep-of-std", "rustc-std-workspace-core", "std", "use_std"))' -C metadata=a600706baa6f2933 -C extra-filename=-a600706baa6f2933 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/libc-a600706baa6f2933 -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-1.0.44/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="proc-macro"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "proc-macro"))' -C metadata=1466623c29203147 -C extra-filename=-1466623c29203147 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/quote-1466623c29203147 -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/object-0.37.3/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no '--allow=clippy::uninlined_format_args' '--allow=clippy::type_complexity' '--allow=clippy::single_match' '--allow=clippy::should_implement_trait' '--allow=clippy::result_unit_err' '--allow=clippy::needless_lifetimes' '--allow=clippy::match_like_matches_macro' '--allow=clippy::manual_flatten' '--allow=clippy::field_reassign_with_default' '--allow=clippy::comparison_chain' '--allow=clippy::collapsible_match' '--allow=clippy::collapsible_if' '--allow=clippy::collapsible_else_if' --cfg 'feature="archive"' --cfg 'feature="coff"' --cfg 'feature="elf"' --cfg 'feature="macho"' --cfg 'feature="pe"' --cfg 'feature="read_core"' --cfg 'feature="unaligned"' --cfg 'feature="xcoff"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("all", "alloc", "archive", "build", "build_core", "cargo-all", "coff", "compression", "core", "default", "doc", "elf", "macho", "pe", "read", "read_core", "rustc-dep-of-std", "std", "unaligned", "unstable", "unstable-all", "wasm", "write", "write_core", "write_std", "xcoff"))' -C metadata=cbd1a42b2599fb76 -C extra-filename=-cbd1a42b2599fb76 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/object-cbd1a42b2599fb76 -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/syn-1.0.109/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg 'feature="clone-impls"' --cfg 'feature="default"' --cfg 'feature="derive"' --cfg 'feature="extra-traits"' --cfg 'feature="parsing"' --cfg 'feature="printing"' --cfg 'feature="proc-macro"' --cfg 'feature="quote"' --cfg 'feature="visit"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("clone-impls", "default", "derive", "extra-traits", "fold", "full", "parsing", "printing", "proc-macro", "quote", "test", "visit", "visit-mut"))' -C metadata=7f50dab09b35fa1b -C extra-filename=-7f50dab09b35fa1b --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/syn-7f50dab09b35fa1b -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name autocfg --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/autocfg-1.5.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=4572e5c93ed34edb -C extra-filename=-4572e5c93ed34edb --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name lazy_static --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lazy_static-0.2.11/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("compiletest", "compiletest_rs", "nightly", "spin", "spin_no_std"))' -C metadata=6e90ee584e8c4c60 -C extra-filename=-6e90ee584e8c4c60 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name memchr --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memchr-2.8.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("alloc", "core", "default", "libc", "logging", "rustc-dep-of-std", "std", "use_std"))' -C metadata=114acc5537d4b737 -C extra-filename=-114acc5537d4b737 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name tinyvec_macros --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec_macros-0.1.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=03b29e101e0026ce -C extra-filename=-03b29e101e0026ce --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name gimli --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gimli-0.32.3/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="read"' --cfg 'feature="read-core"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "endian-reader", "fallible-iterator", "read", "read-all", "read-core", "rustc-dep-of-std", "std", "write"))' -C metadata=5aa3d030b3083d9c -C extra-filename=-5aa3d030b3083d9c --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name unicode_xid --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicode-xid-0.2.6/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg 'feature="default"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("bench", "default", "no_std"))' -C metadata=4a32bed349ac9b6b -C extra-filename=-4a32bed349ac9b6b --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name adler2 --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/adler2-2.0.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("core", "default", "rustc-dep-of-std", "std"))' -C metadata=a971c9e02ce57254 -C extra-filename=-a971c9e02ce57254 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/failure_derive-0.1.8/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("std"))' -C metadata=a53704102361a7ac -C extra-filename=-a53704102361a7ac --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/failure_derive-a53704102361a7ac -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name rustc_demangle --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/rustc-demangle-0.1.27/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("compiler_builtins", "core", "rustc-dep-of-std", "std"))' -C metadata=67a28d1a7463d9d2 -C extra-filename=-67a28d1a7463d9d2 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name quoted_string --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quoted-string-0.6.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=161df45eb9c46379 -C extra-filename=-161df45eb9c46379 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name cfg_if --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cfg-if-1.0.4/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("core", "rustc-dep-of-std"))' -C metadata=3503d38576c50b67 -C extra-filename=-3503d38576c50b67 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name matches --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/matches-0.1.10/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=c90ce6819c06a4b7 -C extra-filename=-c90ce6819c06a4b7 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name safemem --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/safemem-0.2.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=ea5eb1381a867dab -C extra-filename=-ea5eb1381a867dab --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name vec1 --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/vec1-1.12.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "serde", "smallvec-v1", "smallvec-v1-write", "smallvec_v1_", "std", "unstable-nightly-try-from-impl"))' -C metadata=4397bf817fa2bf0c -C extra-filename=-4397bf817fa2bf0c --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name quoted_printable --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quoted_printable-0.4.8/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "std"))' -C metadata=6c8801edbde8eb32 -C extra-filename=-6c8801edbde8eb32 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name byteorder --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/byteorder-1.5.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "i128", "std"))' -C metadata=f457975fa4e321fd -C extra-filename=-f457975fa4e321fd --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name soft_ascii_string --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/soft-ascii-string-1.1.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=5fb5a55081b7a000 -C extra-filename=-5fb5a55081b7a000 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name iana_time_zone --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/iana-time-zone-0.1.65/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="fallback"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("fallback"))' -C metadata=eee7da62380fb87b -C extra-filename=-eee7da62380fb87b --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name unicode_bidi --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicode-bidi-0.3.18/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="hardcoded-data"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("bench_it", "default", "flame", "flame_it", "flamer", "hardcoded-data", "serde", "smallvec", "std", "unstable", "with_serde"))' -C metadata=028a81ce87001f39 -C extra-filename=-028a81ce87001f39 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name percent_encoding --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/percent-encoding-1.0.1/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=270085e947affbd9 -C extra-filename=-270085e947affbd9 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking tinyvec v1.10.0
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name tinyvec --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tinyvec-1.10.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="alloc"' --cfg 'feature="default"' --cfg 'feature="tinyvec_macros"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("alloc", "arbitrary", "borsh", "debugger_visualizer", "default", "experimental_write_impl", "generic-array", "grab_spare_slice", "latest_stable_rust", "nightly_slice_partition_dedup", "real_blackbox", "rustc_1_40", "rustc_1_55", "rustc_1_57", "rustc_1_61", "serde", "std", "tinyvec_macros"))' -C metadata=3fe337b18c8ea740 -C extra-filename=-3fe337b18c8ea740 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern tinyvec_macros=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libtinyvec_macros-03b29e101e0026ce.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking lut v0.1.0-unstable
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name lut --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lut-0.1.0-unstable/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="media-type-chars"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "media-type-chars"))' -C metadata=43680b9a56ac4527 -C extra-filename=-43680b9a56ac4527 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern lazy_static=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/liblazy_static-6e90ee584e8c4c60.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking miniz_oxide v0.8.9
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name miniz_oxide --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --warn=unexpected_cfgs --check-cfg 'cfg(fuzzing)' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("alloc", "block-boundary", "core", "default", "rustc-dep-of-std", "serde", "simd", "simd-adler32", "std", "with-alloc"))' -C metadata=15b72d165e622abe -C extra-filename=-15b72d165e622abe --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern adler2=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libadler2-a971c9e02ce57254.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/quote-1466623c29203147/build-script-build`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/object-cbd1a42b2599fb76/build-script-build`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/failure_derive-a53704102361a7ac/build-script-build`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/syn-7f50dab09b35fa1b/build-script-build`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/proc-macro2-aff2c23becd03660/build-script-build`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/libc-a600706baa6f2933/build-script-build`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name libc --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.182/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 '--allow=clippy::used_underscore_binding' --allow=unused_qualifications '--warn=clippy::unnecessary_semicolon' '--allow=clippy::unnecessary_cast' '--allow=clippy::uninlined_format_args' '--warn=clippy::ptr_as_ptr' '--allow=clippy::non_minimal_cfg' '--allow=clippy::missing_safety_doc' '--warn=clippy::map_unwrap_or' '--warn=clippy::manual_assert' '--allow=clippy::identity_op' '--warn=clippy::explicit_iter_loop' '--allow=clippy::expl_impl_clone_on_copy' --cfg 'feature="default"' --cfg 'feature="std"' --cfg 'feature="use_std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("align", "const-extern-fn", "default", "extra_traits", "rustc-dep-of-std", "rustc-std-workspace-core", "std", "use_std"))' -C metadata=3a2836888aa77a3c -C extra-filename=-3a2836888aa77a3c --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"' --cfg freebsd12 --check-cfg 'cfg(emscripten_old_stat_abi)' --check-cfg 'cfg(espidf_time32)' --check-cfg 'cfg(freebsd10)' --check-cfg 'cfg(freebsd11)' --check-cfg 'cfg(freebsd12)' --check-cfg 'cfg(freebsd13)' --check-cfg 'cfg(freebsd14)' --check-cfg 'cfg(freebsd15)' --check-cfg 'cfg(gnu_file_offset_bits64)' --check-cfg 'cfg(gnu_time_bits64)' --check-cfg 'cfg(libc_deny_warnings)' --check-cfg 'cfg(linux_time_bits64)' --check-cfg 'cfg(musl_v1_2_3)' --check-cfg 'cfg(musl32_time64)' --check-cfg 'cfg(vxworks_lt_25_09)' --check-cfg 'cfg(target_os,values("switch","aix","ohos","hurd","rtems","visionos","nuttx","cygwin","qurt"))' --check-cfg 'cfg(target_env,values("illumos","wasi","aix","ohos","nto71_iosock","nto80"))' --check-cfg 'cfg(target_arch,values("loongarch64","mips32r6","mips64r6","csky"))'`
+    Checking base64 v0.6.0
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name base64 --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/base64-0.6.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=b1de063204bede84 -C extra-filename=-b1de063204bede84 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern byteorder=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libbyteorder-f457975fa4e321fd.rmeta --extern safemem=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libsafemem-ea5eb1381a867dab.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking media-type-impl-utils v0.3.0-unstable
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name media_type_impl_utils --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/media-type-impl-utils-0.3.0-unstable/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default"))' -C metadata=600b2511dca9c046 -C extra-filename=-600b2511dca9c046 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern lut=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/liblut-43680b9a56ac4527.rmeta --extern percent_encoding=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libpercent_encoding-270085e947affbd9.rmeta --extern quoted_string=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libquoted_string-161df45eb9c46379.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+   Compiling num-traits v0.2.19
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-traits-0.2.19/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "i128", "libm", "std"))' -C metadata=f278ce6ff30a9b1e -C extra-filename=-f278ce6ff30a9b1e --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/num-traits-f278ce6ff30a9b1e -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern autocfg=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libautocfg-4572e5c93ed34edb.rlib --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name proc_macro2 --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/proc-macro2-1.0.106/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="proc-macro"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "nightly", "proc-macro", "span-locations"))' -C metadata=57b8cfdc8a7b052e -C extra-filename=-57b8cfdc8a7b052e --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern unicode_ident=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libunicode_ident-dbcb95dd97773093.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"' --cfg wrap_proc_macro --check-cfg 'cfg(fuzzing)' --check-cfg 'cfg(no_is_available)' --check-cfg 'cfg(no_literal_byte_character)' --check-cfg 'cfg(no_literal_c_string)' --check-cfg 'cfg(no_source_text)' --check-cfg 'cfg(proc_macro_span)' --check-cfg 'cfg(proc_macro_span_file)' --check-cfg 'cfg(proc_macro_span_location)' --check-cfg 'cfg(procmacro2_backtrace)' --check-cfg 'cfg(procmacro2_build_probe)' --check-cfg 'cfg(procmacro2_nightly_testing)' --check-cfg 'cfg(procmacro2_semver_exempt)' --check-cfg 'cfg(randomize_layout)' --check-cfg 'cfg(span_locations)' --check-cfg 'cfg(super_unstable)' --check-cfg 'cfg(wrap_proc_macro)'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/build/num-traits-f278ce6ff30a9b1e/build-script-build`
+    Checking media-type v0.4.0-unstable
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name media_type --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/media-type-0.4.0-unstable/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="expose-param-utils"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("expose-param-utils", "inner-bench"))' -C metadata=ce9991dad4c5f204 -C extra-filename=-ce9991dad4c5f204 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern lut=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/liblut-43680b9a56ac4527.rmeta --extern media_type_impl_utils=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libmedia_type_impl_utils-600b2511dca9c046.rmeta --extern percent_encoding=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libpercent_encoding-270085e947affbd9.rmeta --extern quoted_string=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libquoted_string-161df45eb9c46379.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name object --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/object-0.37.3/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 '--allow=clippy::uninlined_format_args' '--allow=clippy::type_complexity' '--allow=clippy::single_match' '--allow=clippy::should_implement_trait' '--allow=clippy::result_unit_err' '--allow=clippy::needless_lifetimes' '--allow=clippy::match_like_matches_macro' '--allow=clippy::manual_flatten' '--allow=clippy::field_reassign_with_default' '--allow=clippy::comparison_chain' '--allow=clippy::collapsible_match' '--allow=clippy::collapsible_if' '--allow=clippy::collapsible_else_if' --cfg 'feature="archive"' --cfg 'feature="coff"' --cfg 'feature="elf"' --cfg 'feature="macho"' --cfg 'feature="pe"' --cfg 'feature="read_core"' --cfg 'feature="unaligned"' --cfg 'feature="xcoff"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("all", "alloc", "archive", "build", "build_core", "cargo-all", "coff", "compression", "core", "default", "doc", "elf", "macho", "pe", "read", "read_core", "rustc-dep-of-std", "std", "unaligned", "unstable", "unstable-all", "wasm", "write", "write_core", "write_std", "xcoff"))' -C metadata=ee51988aca2eb9d6 -C extra-filename=-ee51988aca2eb9d6 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern memchr=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libmemchr-114acc5537d4b737.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"' --cfg core_error --check-cfg 'cfg(core_error)'`
+    Checking unicode-normalization v0.1.25
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name unicode_normalization --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/unicode-normalization-0.1.25/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "std"))' -C metadata=5c6a4367ea53bcd3 -C extra-filename=-5c6a4367ea53bcd3 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern tinyvec=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libtinyvec-3fe337b18c8ea740.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name num_traits --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/num-traits-0.2.19/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "i128", "libm", "std"))' -C metadata=ea08d5edc703f84f -C extra-filename=-ea08d5edc703f84f --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"' --cfg has_total_cmp --check-cfg 'cfg(has_total_cmp)'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name quote --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/quote-1.0.44/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="proc-macro"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "proc-macro"))' -C metadata=32a8e7a8a5636ed8 -C extra-filename=-32a8e7a8a5636ed8 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern proc_macro2=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libproc_macro2-57b8cfdc8a7b052e.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"' --check-cfg 'cfg(no_diagnostic_namespace)'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name syn --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/syn-1.0.109/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg 'feature="clone-impls"' --cfg 'feature="default"' --cfg 'feature="derive"' --cfg 'feature="extra-traits"' --cfg 'feature="parsing"' --cfg 'feature="printing"' --cfg 'feature="proc-macro"' --cfg 'feature="quote"' --cfg 'feature="visit"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("clone-impls", "default", "derive", "extra-traits", "fold", "full", "parsing", "printing", "proc-macro", "quote", "test", "visit", "visit-mut"))' -C metadata=31993ec82fce3f97 -C extra-filename=-31993ec82fce3f97 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern proc_macro2=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libproc_macro2-57b8cfdc8a7b052e.rmeta --extern quote=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libquote-32a8e7a8a5636ed8.rmeta --extern unicode_ident=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libunicode_ident-dbcb95dd97773093.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking idna v0.1.5
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name idna --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-0.1.5/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=795ee2a3b0b3d710 -C extra-filename=-795ee2a3b0b3d710 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern matches=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libmatches-c90ce6819c06a4b7.rmeta --extern unicode_bidi=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libunicode_bidi-028a81ce87001f39.rmeta --extern unicode_normalization=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libunicode_normalization-5c6a4367ea53bcd3.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking chrono v0.4.43
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name chrono --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/chrono-0.4.43/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="alloc"' --cfg 'feature="clock"' --cfg 'feature="default"' --cfg 'feature="iana-time-zone"' --cfg 'feature="js-sys"' --cfg 'feature="now"' --cfg 'feature="oldtime"' --cfg 'feature="std"' --cfg 'feature="wasm-bindgen"' --cfg 'feature="wasmbind"' --cfg 'feature="winapi"' --cfg 'feature="windows-link"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("__internal_bench", "alloc", "arbitrary", "clock", "core-error", "default", "defmt", "iana-time-zone", "js-sys", "libc", "now", "oldtime", "pure-rust-locales", "rkyv", "rkyv-16", "rkyv-32", "rkyv-64", "rkyv-validation", "serde", "std", "unstable-locales", "wasm-bindgen", "wasmbind", "winapi", "windows-link"))' -C metadata=52184ee9aefd87b3 -C extra-filename=-52184ee9aefd87b3 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern iana_time_zone=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libiana_time_zone-eee7da62380fb87b.rmeta --extern num_traits=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libnum_traits-ea08d5edc703f84f.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking memchr v1.0.2
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name memchr --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/memchr-1.0.2/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="libc"' --cfg 'feature="use_std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "libc", "use_std"))' -C metadata=d354744e5bdb1adc -C extra-filename=-d354744e5bdb1adc --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern libc=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/liblibc-3a2836888aa77a3c.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking nom v3.2.1
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name nom --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/nom-3.2.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="std"' --cfg 'feature="stream"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("compiler_error", "default", "lazy_static", "nightly", "regex", "regexp", "regexp_macros", "std", "stream", "verbose-errors"))' -C metadata=2719b96a0c66f154 -C extra-filename=-2719b96a0c66f154 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern memchr=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libmemchr-d354744e5bdb1adc.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking addr2line v0.25.1
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name addr2line --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/addr2line-0.25.1/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("all", "alloc", "bin", "cargo-all", "core", "cpp_demangle", "default", "fallible-iterator", "loader", "rustc-demangle", "rustc-dep-of-std", "smallvec", "std", "wasm"))' -C metadata=a0b1576fd2cfc381 -C extra-filename=-a0b1576fd2cfc381 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern gimli=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libgimli-5aa3d030b3083d9c.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+   Compiling synstructure v0.12.6
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name synstructure --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/synstructure-0.12.6/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="proc-macro"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "proc-macro"))' -C metadata=e9a738a794c5b370 -C extra-filename=-e9a738a794c5b370 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern proc_macro2=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libproc_macro2-57b8cfdc8a7b052e.rmeta --extern quote=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libquote-32a8e7a8a5636ed8.rmeta --extern syn=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libsyn-31993ec82fce3f97.rmeta --extern unicode_xid=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libunicode_xid-4a32bed349ac9b6b.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name failure_derive --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/failure_derive-0.1.8/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type proc-macro --emit=dep-info,link -C prefer-dynamic -C embed-bitcode=no --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("std"))' -C metadata=3e78b019174634cb -C extra-filename=-3e78b019174634cb --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern proc_macro2=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libproc_macro2-57b8cfdc8a7b052e.rlib --extern quote=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libquote-32a8e7a8a5636ed8.rlib --extern syn=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libsyn-31993ec82fce3f97.rlib --extern synstructure=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libsynstructure-e9a738a794c5b370.rlib --extern proc_macro --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"' --cfg has_dyn_trait`
+    Checking backtrace v0.3.76
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name backtrace --edition=2021 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/backtrace-0.3.76/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --allow=unexpected_cfgs --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("coresymbolication", "cpp_demangle", "dbghelp", "default", "dl_iterate_phdr", "dladdr", "kernel32", "libunwind", "ruzstd", "serde", "serialize-serde", "std", "unix-backtrace"))' -C metadata=9fdad8c5e1983b68 -C extra-filename=-9fdad8c5e1983b68 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern addr2line=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libaddr2line-a0b1576fd2cfc381.rmeta --extern cfg_if=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libcfg_if-3503d38576c50b67.rmeta --extern libc=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/liblibc-3a2836888aa77a3c.rmeta --extern miniz_oxide=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libminiz_oxide-15b72d165e622abe.rmeta --extern object=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libobject-ee51988aca2eb9d6.rmeta --extern rustc_demangle=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/librustc_demangle-67a28d1a7463d9d2.rmeta --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking failure v0.1.8
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name failure --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/failure-0.1.8/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="backtrace"' --cfg 'feature="default"' --cfg 'feature="derive"' --cfg 'feature="failure_derive"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("backtrace", "default", "derive", "failure_derive", "std"))' -C metadata=181f93d544fc9f1b -C extra-filename=-181f93d544fc9f1b --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern backtrace=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libbacktrace-9fdad8c5e1983b68.rmeta --extern failure_derive=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libfailure_derive-3e78b019174634cb.so --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+    Checking mail-internals v0.2.3 (/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals)
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name mail_internals --edition=2015 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "traceing"))' -C metadata=fa734854c91a030d -C extra-filename=-fa734854c91a030d --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps -C incremental=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/incremental -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps --extern base64=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libbase64-b1de063204bede84.rmeta --extern chrono=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libchrono-52184ee9aefd87b3.rmeta --extern failure=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libfailure-181f93d544fc9f1b.rmeta --extern idna=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libidna-795ee2a3b0b3d710.rmeta --extern media_type=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libmedia_type-ce9991dad4c5f204.rmeta --extern media_type_impl_utils=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libmedia_type_impl_utils-600b2511dca9c046.rmeta --extern nom=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libnom-2719b96a0c66f154.rmeta --extern percent_encoding=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libpercent_encoding-270085e947affbd9.rmeta --extern quoted_string=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libquoted_string-161df45eb9c46379.rmeta --extern quoted_printable=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libquoted_printable-6c8801edbde8eb32.rmeta --extern soft_ascii_string=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libsoft_ascii_string-5fb5a55081b7a000.rmeta --extern vec1=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libvec1-4397bf817fa2bf0c.rmeta -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="mail_internals"'`
+warning: `...` range patterns are deprecated
+  --> src/grammar.rs:81:12
+   |
+81 |         '!'...'\'' |
+   |            ^^^ help: use `..=` for an inclusive range
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+   = note: `#[warn(ellipsis_inclusive_range_patterns)]` on by default
+
+warning: `...` range patterns are deprecated
+  --> src/grammar.rs:82:12
+   |
+82 |         '*'...'[' |
+   |            ^^^ help: use `..=` for an inclusive range
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+  --> src/grammar.rs:83:12
+   |
+83 |         ']'...'~' => true,
+   |            ^^^ help: use `..=` for an inclusive range
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/grammar.rs:133:11
+    |
+133 |         33...90 |
+    |           ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/grammar.rs:134:11
+    |
+134 |         94...126 => true,
+    |           ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/grammar.rs:145:12
+    |
+145 |         '#'...'[' |
+    |            ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/grammar.rs:147:12
+    |
+147 |         ']'...'~' => true,
+    |            ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/grammar.rs:334:16
+    |
+334 |             '0'...'9' |
+    |                ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/grammar.rs:335:16
+    |
+335 |             'a'...'z' |
+    |                ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/grammar.rs:336:16
+    |
+336 |             'A'...'Z' |
+    |                ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/bind/quoted_printable.rs:124:21
+    |
+124 |                 b'0'...b'9' |
+    |                     ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/bind/quoted_printable.rs:125:21
+    |
+125 |                 b'A'...b'Z' |
+    |                     ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: `...` range patterns are deprecated
+   --> src/bind/quoted_printable.rs:126:21
+    |
+126 |                 b'a'...b'z'  => {
+    |                     ^^^ help: use `..=` for an inclusive range
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:18:34
+   |
+18 |     fn boxed_clone(&self) -> Box<EncodableInHeader>;
+   |                                  ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+   = note: `#[warn(bare_trait_objects)]` on by default
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+18 |     fn boxed_clone(&self) -> Box<dyn EncodableInHeader>;
+   |                                  +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:27:6
+   |
+27 | impl EncodableInHeader {
+   |      ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+27 | impl dyn EncodableInHeader {
+   |      +++
+help: you might have intended to implement this trait for a given type
+   |
+27 | impl EncodableInHeader for /* Type */ {
+   |                        ++++++++++++++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:66:38
+   |
+66 | impl EncodableInHeaderBoxExt for Box<EncodableInHeader> {
+   |                                      ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+66 | impl EncodableInHeaderBoxExt for Box<dyn EncodableInHeader> {
+   |                                      +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:78:38
+   |
+78 | impl EncodableInHeaderBoxExt for Box<EncodableInHeader+Send> {
+   |                                      ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+78 | impl EncodableInHeaderBoxExt for Box<dyn EncodableInHeader+Send> {
+   |                                      +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+   --> src/encoder/encodable.rs:165:34
+    |
+165 |     fn boxed_clone(&self) -> Box<EncodableInHeader> {
+    |                                  ^^^^^^^^^^^^^^^^^
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+    |
+165 |     fn boxed_clone(&self) -> Box<dyn EncodableInHeader> {
+    |                                  +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:54:20
+   |
+54 | impl Clone for Box<EncodableInHeader> {
+   |                    ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+54 | impl Clone for Box<dyn EncodableInHeader> {
+   |                    +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+   --> src/error.rs:154:32
+    |
+154 |     fn cause(&self) -> Option<&Fail> {
+    |                                ^^^^
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+    |
+154 |     fn cause(&self) -> Option<&dyn Fail> {
+    |                                +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+   --> src/encoder/encodable.rs:122:34
+    |
+122 |     fn boxed_clone(&self) -> Box<EncodableInHeader> {
+    |                                  ^^^^^^^^^^^^^^^^^
+    |
+    = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+    = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+    |
+122 |     fn boxed_clone(&self) -> Box<dyn EncodableInHeader> {
+    |                                  +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:38:47
+   |
+38 |             Some( unsafe { &*( self as *const EncodableInHeader as *const T) } )
+   |                                               ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+38 |             Some( unsafe { &*( self as *const dyn EncodableInHeader as *const T) } )
+   |                                               +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:47:49
+   |
+47 |             Some( unsafe { &mut *( self as *mut EncodableInHeader as *mut T) } )
+   |                                                 ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+47 |             Some( unsafe { &mut *( self as *mut dyn EncodableInHeader as *mut T) } )
+   |                                                 +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:70:27
+   |
+70 |             let ptr: *mut EncodableInHeader = Box::into_raw(self);
+   |                           ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+70 |             let ptr: *mut dyn EncodableInHeader = Box::into_raw(self);
+   |                           +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:69:12
+   |
+69 |         if EncodableInHeader::is::<T>(&*self) {
+   |            ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+69 |         if <dyn EncodableInHeader>::is::<T>(&*self) {
+   |            ++++                  +
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:82:27
+   |
+82 |             let ptr: *mut EncodableInHeader = Box::into_raw(self);
+   |                           ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+82 |             let ptr: *mut dyn EncodableInHeader = Box::into_raw(self);
+   |                           +++
+
+warning: trait objects without an explicit `dyn` are deprecated
+  --> src/encoder/encodable.rs:81:12
+   |
+81 |         if EncodableInHeader::is::<T>(&*self) {
+   |            ^^^^^^^^^^^^^^^^^
+   |
+   = warning: this is accepted in the current edition (Rust 2015) but is a hard error in Rust 2021!
+   = note: for more information, see <https://doc.rust-lang.org/nightly/edition-guide/rust-2021/warnings-promoted-to-error.html>
+help: if this is a dyn-compatible trait, use `dyn`
+   |
+81 |         if <dyn EncodableInHeader>::is::<T>(&*self) {
+   |            ++++                  +
+
+warning: non-local `impl` definition, `impl` blocks should be written at the same level as their item
+  --> src/error.rs:12:30
+   |
+12 | #[derive(Copy, Clone, Debug, Fail, PartialEq, Eq, Hash)]
+   |                              ^---
+   |                              |
+   |                              `Fail` is not local
+   |                              move the `impl` block outside of this constant `_DERIVE_failure_Fail_FOR_EncodingErrorKind`
+13 | pub enum EncodingErrorKind {
+   |          ----------------- `EncodingErrorKind` is not local
+   |
+   = note: the derive macro `Fail` defines the non-local `impl`, and may need to be changed
+   = note: the derive macro `Fail` may come from an old version of the `failure_derive` crate, try updating your dependency with `cargo update -p failure_derive`
+   = note: an `impl` is never scoped, even when it is nested inside an item, as it may impact type checking outside of that item, which can be the case if neither the trait or the self type are at the same nesting level as the `impl`
+   = note: items in an anonymous const item (`const _: () = { ... }`) are treated as in the same scope as the anonymous const's declaration for the purpose of this lint
+   = note: this lint may become deny-by-default in the edition 2024 and higher, see the tracking issue <https://github.com/rust-lang/rust/issues/120363>
+   = note: `#[warn(non_local_definitions)]` on by default
+   = note: this warning originates in the derive macro `Fail` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: non-local `impl` definition, `impl` blocks should be written at the same level as their item
+  --> src/error.rs:12:30
+   |
+12 | #[derive(Copy, Clone, Debug, Fail, PartialEq, Eq, Hash)]
+   |                              ^---
+   |                              |
+   |                              `Display` is not local
+   |                              move the `impl` block outside of this constant `_DERIVE_failure_core_fmt_Display_FOR_EncodingErrorKind`
+13 | pub enum EncodingErrorKind {
+   |          ----------------- `EncodingErrorKind` is not local
+   |
+   = note: the derive macro `Fail` defines the non-local `impl`, and may need to be changed
+   = note: the derive macro `Fail` may come from an old version of the `failure_derive` crate, try updating your dependency with `cargo update -p failure_derive`
+   = note: an `impl` is never scoped, even when it is nested inside an item, as it may impact type checking outside of that item, which can be the case if neither the trait or the self type are at the same nesting level as the `impl`
+   = note: items in an anonymous const item (`const _: () = { ... }`) are treated as in the same scope as the anonymous const's declaration for the purpose of this lint
+   = note: this lint may become deny-by-default in the edition 2024 and higher, see the tracking issue <https://github.com/rust-lang/rust/issues/120363>
+   = note: this warning originates in the derive macro `Fail` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Number of vulnerable pointers: 6
+Use-After-Free detected
+1 Bug(s) detected.
+Error seed #1: (vec_insert_bytes::bb0, <NonNull, {vec_insert_bytes::_1.<*>}, {}>) in DefId(0:39 ~ mail_internals[83f8]::utils::vec_insert_bytes)
+Analysis time: 0.06842369 seconds
+Used Memory Before Analysis: 142 MB
+Max Memory in Analysis: 142 MB
+warning: `mail-internals` (lib) generated 29 warnings (run `cargo fix --lib -p mail-internals` to apply 27 suggestions)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.67s
+warning: the following packages contain code that will be rejected by a future version of Rust: lut v0.1.0-unstable, nom v3.2.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`

@@ -1,0 +1,1231 @@
+   Compiling find-msvc-tools v0.1.9
+   Compiling shlex v1.3.0
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name find_msvc_tools --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/find-msvc-tools-0.1.9/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --allow=unexpected_cfgs --check-cfg 'cfg(disable_clang_cl_tests)' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=bfa02093d375aa88 -C extra-filename=-bfa02093d375aa88 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps --cap-lints allow --cfg fuzzing -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="secp256k1"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name shlex --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/shlex-1.3.0/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "std"))' -C metadata=f4c3659040844f7b -C extra-filename=-f4c3659040844f7b --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps --cap-lints allow --cfg fuzzing -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="secp256k1"'`
+   Compiling cc v1.2.59
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name cc --edition=2018 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cc-1.2.59/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no --allow=unexpected_cfgs --check-cfg 'cfg(disable_clang_cl_tests)' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("jobserver", "parallel"))' -C metadata=712bb7fc179f647e -C extra-filename=-712bb7fc179f647e --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps --extern find_msvc_tools=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps/libfind_msvc_tools-bfa02093d375aa88.rmeta --extern shlex=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps/libshlex-f4c3659040844f7b.rmeta --cap-lints allow --cfg fuzzing -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="secp256k1"'`
+   Compiling secp256k1-sys v0.6.1 (/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/secp256k1-sys)
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name build_script_build --edition=2018 secp256k1-sys/build.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no --cfg 'feature="alloc"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("alloc", "default", "lowmemory", "recovery", "std"))' -C metadata=fdd85cf858f747af -C extra-filename=-fdd85cf858f747af --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/build/secp256k1-sys-fdd85cf858f747af -C incremental=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/incremental -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps --extern cc=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps/libcc-712bb7fc179f647e.rlib --cfg fuzzing -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="secp256k1"'`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/build/secp256k1-sys-fdd85cf858f747af/build-script-build`
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name secp256k1_sys --edition=2018 secp256k1-sys/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="alloc"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("alloc", "default", "lowmemory", "recovery", "std"))' -C metadata=7ff0214c904c5444 -C extra-filename=-7ff0214c904c5444 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps -C incremental=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/incremental -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps --cfg fuzzing -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="secp256k1"' -L native=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/build/secp256k1-sys-96847851374acef6/out -l static=secp256k1`
+warning: unexpected `cfg` condition name: `fuzzing`
+  --> secp256k1-sys/src/lib.rs:31:7
+   |
+31 | #[cfg(fuzzing)]
+   |       ^^^^^^^
+   |
+   = help: expected names are: `clippy`, `debug_assertions`, `doc`, `docsrs`, `doctest`, `feature`, `fmt_debug`, `miri`, `overflow_checks`, `panic`, `proc_macro`, `relocation_model`, `rustfmt`, `sanitize`, `sanitizer_cfi_generalize_pointers`, `sanitizer_cfi_normalize_integers`, `target_abi`, `target_arch`, `target_endian`, `target_env`, `target_family`, `target_feature`, `target_has_atomic`, `target_has_atomic_equal_alignment`, `target_has_atomic_load_store`, `target_os`, `target_pointer_width`, `target_thread_local`, `target_vendor`, `test`, `ub_checks`, `unix`, and `windows`
+   = help: consider using a Cargo feature instead
+   = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+            [lints.rust]
+            unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+   = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+   = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:191:11
+    |
+191 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:198:11
+    |
+198 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:208:11
+    |
+208 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:215:11
+    |
+215 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:218:11
+    |
+218 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:281:11
+    |
+281 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:288:11
+    |
+288 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:297:11
+    |
+297 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:304:11
+    |
+304 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:307:11
+    |
+307 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:369:11
+    |
+369 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:376:11
+    |
+376 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:386:11
+    |
+386 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:393:11
+    |
+393 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:396:11
+    |
+396 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:458:11
+    |
+458 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:465:11
+    |
+465 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:474:11
+    |
+474 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:481:11
+    |
+481 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:484:11
+    |
+484 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:581:11
+    |
+581 | #[cfg(not(fuzzing))]
+    |           ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:790:34
+    |
+790 | #[cfg(all(feature = "alloc", not(rust_secp_no_symbol_renaming)))]
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:801:34
+    |
+801 | #[cfg(all(feature = "alloc", not(rust_secp_no_symbol_renaming)))]
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:833:34
+    |
+833 | #[cfg(all(feature = "alloc", not(rust_secp_no_symbol_renaming)))]
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:841:34
+    |
+841 | #[cfg(all(feature = "alloc", not(rust_secp_no_symbol_renaming)))]
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:877:11
+    |
+877 | #[cfg(not(rust_secp_no_symbol_renaming))]
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:905:11
+    |
+905 | #[cfg(not(rust_secp_no_symbol_renaming))]
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:918:11
+    |
+918 | #[cfg(not(rust_secp_no_symbol_renaming))]
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/lib.rs:960:7
+    |
+960 | #[cfg(fuzzing)]
+    |       ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+    --> secp256k1-sys/src/lib.rs:1433:7
+     |
+1433 | #[cfg(fuzzing)]
+     |       ^^^^^^^
+     |
+     = help: consider using a Cargo feature instead
+     = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+              [lints.rust]
+              unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+     = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+     = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:50:14
+    |
+50  |        #[cfg(fuzzing)]
+    |              ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:136:1
+    |
+136 | impl_array_newtype!(PublicKey, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:58:15
+    |
+58  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:136:1
+    |
+136 | impl_array_newtype!(PublicKey, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:61:15
+    |
+61  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:136:1
+    |
+136 | impl_array_newtype!(PublicKey, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:68:15
+    |
+68  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:136:1
+    |
+136 | impl_array_newtype!(PublicKey, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:76:15
+    |
+76  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:136:1
+    |
+136 | impl_array_newtype!(PublicKey, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:50:14
+    |
+50  |        #[cfg(fuzzing)]
+    |              ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:230:1
+    |
+230 | impl_array_newtype!(Signature, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:58:15
+    |
+58  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:230:1
+    |
+230 | impl_array_newtype!(Signature, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:61:15
+    |
+61  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:230:1
+    |
+230 | impl_array_newtype!(Signature, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:68:15
+    |
+68  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:230:1
+    |
+230 | impl_array_newtype!(Signature, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:76:15
+    |
+76  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:230:1
+    |
+230 | impl_array_newtype!(Signature, c_uchar, 64);
+    | ------------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:50:14
+    |
+50  |        #[cfg(fuzzing)]
+    |              ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:318:1
+    |
+318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
+    | ------------------------------------------------ in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:58:15
+    |
+58  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:318:1
+    |
+318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
+    | ------------------------------------------------ in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:61:15
+    |
+61  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:318:1
+    |
+318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
+    | ------------------------------------------------ in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:68:15
+    |
+68  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:318:1
+    |
+318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
+    | ------------------------------------------------ in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:76:15
+    |
+76  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:318:1
+    |
+318 | impl_array_newtype!(XOnlyPublicKey, c_uchar, 64);
+    | ------------------------------------------------ in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:50:14
+    |
+50  |        #[cfg(fuzzing)]
+    |              ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:407:1
+    |
+407 | impl_array_newtype!(KeyPair, c_uchar, 96);
+    | ----------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:58:15
+    |
+58  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:407:1
+    |
+407 | impl_array_newtype!(KeyPair, c_uchar, 96);
+    | ----------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:61:15
+    |
+61  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:407:1
+    |
+407 | impl_array_newtype!(KeyPair, c_uchar, 96);
+    | ----------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:68:15
+    |
+68  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:407:1
+    |
+407 | impl_array_newtype!(KeyPair, c_uchar, 96);
+    | ----------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> secp256k1-sys/src/macros.rs:76:15
+    |
+76  |         #[cfg(fuzzing)]
+    |               ^^^^^^^
+    |
+   ::: secp256k1-sys/src/lib.rs:407:1
+    |
+407 | impl_array_newtype!(KeyPair, c_uchar, 96);
+    | ----------------------------------------- in this macro invocation
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: this warning originates in the macro `impl_array_newtype` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+  --> secp256k1-sys/src/types.rs:31:34
+   |
+31 | #[cfg(all(feature = "alloc", not(rust_secp_no_symbol_renaming)))]
+   |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: consider using a Cargo feature instead
+   = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+            [lints.rust]
+            unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+   = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+   = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:498:20
+    |
+498 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ecdh_hash_function_default")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:501:20
+    |
+501 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_nonce_function_rfc6979")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:504:20
+    |
+504 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_nonce_function_default")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:507:20
+    |
+507 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_nonce_function_bip340")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:510:20
+    |
+510 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_context_no_precomp")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:514:20
+    |
+514 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_context_preallocated_destroy")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:518:20
+    |
+518 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ecdsa_signature_parse_der")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:523:20
+    |
+523 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ecdsa_signature_parse_compact")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:528:20
+    |
+528 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ecdsa_signature_parse_der_lax")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:533:20
+    |
+533 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ecdsa_signature_serialize_der")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:538:20
+    |
+538 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ecdsa_signature_serialize_compact")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:543:20
+    |
+543 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ecdsa_signature_normalize")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:549:20
+    |
+549 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ec_seckey_verify")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:553:20
+    |
+553 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ec_seckey_negate")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:557:20
+    |
+557 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ec_seckey_tweak_add")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:562:20
+    |
+562 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_ec_seckey_tweak_mul")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:568:20
+    |
+568 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_keypair_sec")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:574:20
+    |
+574 |     #[cfg_attr(not(rust_secp_no_symbol_renaming), link_name = "rustsecp256k1_v0_6_1_keypair_pub")]
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `rust_secp_no_symbol_renaming`
+   --> secp256k1-sys/src/lib.rs:965:11
+    |
+965 |     #[cfg(rust_secp_no_symbol_renaming)] compile_error!("We do not support fuzzing with rust_secp_no_symbol_renaming");
+    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(rust_secp_no_symbol_renaming)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(rust_secp_no_symbol_renaming)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: constant `THIS_UNUSED_CONSTANT_IS_YOUR_WARNING_THAT_ALL_THE_CRYPTO_IN_THIS_LIB_IS_DISABLED_FOR_FUZZING` is never used
+  --> secp256k1-sys/src/lib.rs:32:7
+   |
+32 | const THIS_UNUSED_CONSTANT_IS_YOUR_WARNING_THAT_ALL_THE_CRYPTO_IN_THIS_LIB_IS_DISABLED_FOR_FUZZING: usize = 0;
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: method `serialize` is never used
+   --> secp256k1-sys/src/lib.rs:173:8
+    |
+139 | impl PublicKey {
+    | -------------- method in this implementation
+...
+173 |     fn serialize(&self) -> [u8; 33] {
+    |        ^^^^^^^^^
+
+warning: method `serialize` is never used
+   --> secp256k1-sys/src/lib.rs:267:8
+    |
+233 | impl Signature {
+    | -------------- method in this implementation
+...
+267 |     fn serialize(&self) -> [u8; 64] {
+    |        ^^^^^^^^^
+
+warning: method `serialize` is never used
+   --> secp256k1-sys/src/lib.rs:355:8
+    |
+321 | impl XOnlyPublicKey {
+    | ------------------- method in this implementation
+...
+355 |     fn serialize(&self) -> [u8; 32] {
+    |        ^^^^^^^^^
+
+warning: method `public_key` is never used
+   --> secp256k1-sys/src/lib.rs:444:8
+    |
+410 | impl KeyPair {
+    | ------------ method in this implementation
+...
+444 |     fn public_key(&self) -> PublicKey {
+    |        ^^^^^^^^^^
+
+warning: field `0` is never read
+  --> secp256k1-sys/src/types.rs:20:24
+   |
+20 | pub struct AlignedType([u8; 16]);
+   |            ----------- ^^^^^^^^
+   |            |
+   |            field in this struct
+   |
+   = help: consider removing this field
+   = note: `AlignedType` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: `secp256k1-sys` (lib) generated 77 warnings
+    Checking secp256k1 v0.25.0 (/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1)
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name secp256k1 --edition=2018 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="alloc"' --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("alloc", "bitcoin-hashes", "bitcoin-hashes-std", "bitcoin_hashes", "default", "global-context", "global-context-less-secure", "lowmemory", "rand", "rand-std", "recovery", "serde", "std"))' -C metadata=10c5b5db39250f4d -C extra-filename=-10c5b5db39250f4d --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps -C incremental=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/incremental -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps --extern secp256k1_sys=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/deps/libsecp256k1_sys-7ff0214c904c5444.rmeta --cfg fuzzing -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="secp256k1"' -L native=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2022-0070-secp256k1/target/debug/build/secp256k1-sys-96847851374acef6/out`
+warning: unexpected `cfg` condition name: `bench`
+   --> src/lib.rs:158:13
+    |
+158 | #![cfg_attr(bench, feature(test))]
+    |             ^^^^^
+    |
+    = help: expected names are: `clippy`, `debug_assertions`, `doc`, `docsrs`, `doctest`, `feature`, `fmt_debug`, `miri`, `overflow_checks`, `panic`, `proc_macro`, `relocation_model`, `rustfmt`, `sanitize`, `sanitizer_cfi_generalize_pointers`, `sanitizer_cfi_normalize_integers`, `target_abi`, `target_arch`, `target_endian`, `target_env`, `target_family`, `target_feature`, `target_has_atomic`, `target_has_atomic_equal_alignment`, `target_has_atomic_load_store`, `target_os`, `target_pointer_width`, `target_thread_local`, `target_vendor`, `test`, `ub_checks`, `unix`, and `windows`
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bench)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(bench)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+    = note: `#[warn(unexpected_cfgs)]` on by default
+
+warning: unexpected `cfg` condition name: `bench`
+   --> src/lib.rs:164:7
+    |
+164 | #[cfg(bench)]
+    |       ^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bench)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(bench)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `bench`
+    --> src/lib.rs:1062:7
+     |
+1062 | #[cfg(bench)]
+     |       ^^^^^
+     |
+     = help: consider using a Cargo feature instead
+     = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+              [lints.rust]
+              unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bench)'] }
+     = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(bench)");` to the top of the `build.rs`
+     = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `bench`
+    --> src/key.rs:2441:7
+     |
+2441 | #[cfg(bench)]
+     |       ^^^^^
+     |
+     = help: consider using a Cargo feature instead
+     = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+              [lints.rust]
+              unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bench)'] }
+     = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(bench)");` to the top of the `build.rs`
+     = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `bench`
+   --> src/ecdh.rs:290:7
+    |
+290 | #[cfg(bench)]
+    |       ^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(bench)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(bench)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: unexpected `cfg` condition name: `fuzzing`
+   --> src/ecdsa/mod.rs:328:23
+    |
+328 |                 #[cfg(fuzzing)]
+    |                       ^^^^^^^
+    |
+    = help: consider using a Cargo feature instead
+    = help: or consider adding in `Cargo.toml` the `check-cfg` lint config for the lint:
+             [lints.rust]
+             unexpected_cfgs = { level = "warn", check-cfg = ['cfg(fuzzing)'] }
+    = help: or consider adding `println!("cargo::rustc-check-cfg=cfg(fuzzing)");` to the top of the `build.rs`
+    = note: see <https://doc.rust-lang.org/nightly/rustc/check-cfg/cargo-specifics.html> for more information about checking conditional configuration
+
+warning: value assigned to `entropy_p` is never read
+   --> src/ecdsa/mod.rs:325:17
+    |
+325 |                 entropy_p = extra_entropy.as_c_ptr().cast::<ffi::types::c_void>();
+    |                 ^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` on by default
+
+warning: missing documentation for a module
+   --> src/lib.rs:182:1
+    |
+182 | pub mod use_after_free;
+    | ^^^^^^^^^^^^^^^^^^^^^^
+    |
+note: the lint level is defined here
+   --> src/lib.rs:154:9
+    |
+154 | #![warn(missing_docs, missing_copy_implementations, missing_debug_implementations)]
+    |         ^^^^^^^^^^^^
+
+warning: missing documentation for a function
+  --> src/use_after_free.rs:10:1
+   |
+10 | pub fn main() {
+   | ^^^^^^^^^^^^^
+
+Number of vulnerable pointers: 61
+Use-After-Free detected
+Use-After-Free detected
+Use-After-Free detected
+1 Bug(s) detected.
+Error seed #1: (main::bb1, <Null, {main::_1}, {}>) in DefId(0:578 ~ secp256k1[ec61]::use_after_free::main)
+Analysis time: 0.057069655 seconds
+Used Memory Before Analysis: 132 MB
+Max Memory in Analysis: 132 MB
+warning: `secp256k1` (lib) generated 9 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 3.58s

@@ -1,0 +1,10 @@
+/home/weili/rust-analysis/pincer_tools/public/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/libminiz_oxide-15b72d165e622abe.rmeta: /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/lib.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/mod.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/core.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/output_buffer.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/stream.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/shared.rs
+
+/home/weili/rust-analysis/pincer_tools/public/pincer/examples/rustsecs/RUSTSEC-2023-0054-mail-internals/target/debug/deps/miniz_oxide-15b72d165e622abe.d: /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/lib.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/mod.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/core.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/output_buffer.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/stream.rs /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/shared.rs
+
+/home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/lib.rs:
+/home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/mod.rs:
+/home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/core.rs:
+/home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/output_buffer.rs:
+/home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/inflate/stream.rs:
+/home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/miniz_oxide-0.8.9/src/shared.rs:

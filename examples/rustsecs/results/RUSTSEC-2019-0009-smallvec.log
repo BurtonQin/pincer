@@ -1,0 +1,115 @@
+warning: `dev_dependencies` is deprecated in favor of `dev-dependencies` and will not work in the 2024 edition
+(in the `smallvec` package)
+warning: no edition set: defaulting to the 2015 edition while the latest is 2021
+    Checking smallvec v0.6.9 (/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2019-0009-smallvec)
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name smallvec --edition=2015 lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "may_dangle", "serde", "specialization", "std", "union"))' -C metadata=1b36eb795007336f -C extra-filename=-1b36eb795007336f --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2019-0009-smallvec/target/debug/deps -C incremental=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2019-0009-smallvec/target/debug/incremental -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2019-0009-smallvec/target/debug/deps -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="smallvec"'`
+warning: use of deprecated function `std::mem::uninitialized`: use `mem::MaybeUninit` instead
+   --> lib.rs:410:54
+    |
+410 |                 data: SmallVecData::from_inline(mem::uninitialized()),
+    |                                                      ^^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated function `std::mem::uninitialized`: use `mem::MaybeUninit` instead
+   --> lib.rs:451:68
+    |
+451 |                 let mut data = SmallVecData::<A>::from_inline(mem::uninitialized());
+    |                                                                    ^^^^^^^^^^^^^
+
+warning: use of deprecated function `std::mem::uninitialized`: use `mem::MaybeUninit` instead
+   --> lib.rs:655:60
+    |
+655 |                 self.data = SmallVecData::from_inline(mem::uninitialized());
+    |                                                            ^^^^^^^^^^^^^
+
+warning: use of deprecated function `std::mem::uninitialized`: use `mem::MaybeUninit` instead
+   --> lib.rs:719:60
+    |
+719 |                 self.data = SmallVecData::from_inline(mem::uninitialized());
+    |                                                            ^^^^^^^^^^^^^
+
+warning: use of deprecated function `std::mem::uninitialized`: use `mem::MaybeUninit` instead
+    --> lib.rs:1043:44
+     |
+1043 |                     let mut data: A = mem::uninitialized();
+     |                                            ^^^^^^^^^^^^^
+
+Number of vulnerable pointers: 117
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Use-After-Free detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Use-After-Free detected
+Use-After-Free detected
+Double Free detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Use-After-Free detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Use-After-Free detected
+Use-After-Free detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Use-After-Free detected
+Use-After-Free detected
+Dangling pointer detected
+Dangling pointer detected
+Use-After-Free detected
+Use-After-Free detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Dangling pointer detected
+Use-After-Free detected
+Use-After-Free detected
+13 Bug(s) detected.
+Error seed #1: (reserve_exact::bb0, <NonNull, {reserve_exact::_1.<*>.proj_3}, {}>) in DefId(0:108 ~ smallvec[06da]::{impl#9}::reserve_exact)
+Error seed #2: (shrink_to_fit::bb0, <NonNull, {shrink_to_fit::_1.<*>.proj_3}, {}>) in DefId(0:109 ~ smallvec[06da]::{impl#9}::shrink_to_fit)
+Error seed #3: (insert_from_slice::bb0, <NonNull, {insert_from_slice::_1.<*>.proj_3}, {}>) in DefId(0:136 ~ smallvec[06da]::{impl#10}::insert_from_slice)
+Error seed #4: (insert_many::bb0, <NonNull, {insert_many::_1.<*>.proj_3}, {}>) in DefId(0:118 ~ smallvec[06da]::{impl#9}::insert_many)
+Error seed #5: (extend::bb3, <NonNull, {extend::_1.<*>.proj_3, extend::_9.<*>.proj_3}, {}>) in DefId(0:189 ~ smallvec[06da]::{impl#25}::extend)
+Error seed #6: (push::bb0, <NonNull, {push::_1.<*>.proj_3}, {}>) in DefId(0:104 ~ smallvec[06da]::{impl#9}::push)
+Error seed #7: (insert_from_slice::bb0, <NonNull, {insert_from_slice::_1.<*>.proj_3}, {}>) in DefId(0:136 ~ smallvec[06da]::{impl#10}::insert_from_slice)
+Error seed #8: (push::bb0, <NonNull, {push::_1.<*>.proj_3}, {}>) in DefId(0:104 ~ smallvec[06da]::{impl#9}::push)
+Error seed #9: (insert::bb0, <NonNull, {insert::_1.<*>.proj_3}, {}>) in DefId(0:117 ~ smallvec[06da]::{impl#9}::insert)
+Error seed #10: (reserve::bb0, <NonNull, {reserve::_1.<*>.proj_3}, {}>) in DefId(0:107 ~ smallvec[06da]::{impl#9}::reserve)
+Error seed #11: (reserve_exact::bb0, <NonNull, {reserve_exact::_1.<*>.proj_3}, {}>) in DefId(0:108 ~ smallvec[06da]::{impl#9}::reserve_exact)
+Error seed #12: (grow::bb0, <NonNull, {grow::_1.<*>.proj_3}, {}>) in DefId(0:106 ~ smallvec[06da]::{impl#9}::grow)
+Error seed #13: (extend::bb0, <NonNull, {extend::_1.<*>.proj_3}, {}>) in DefId(0:189 ~ smallvec[06da]::{impl#25}::extend)
+Analysis time: 0.077753038 seconds
+Used Memory Before Analysis: 115 MB
+Max Memory in Analysis: 115 MB
+warning: `smallvec` (lib) generated 5 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.50s

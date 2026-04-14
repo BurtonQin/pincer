@@ -1,0 +1,39 @@
+[submodule "examples/rustsecs/RUSTSEC-2019-0009-smallvec"]
+	path = examples/rustsecs/RUSTSEC-2019-0009-smallvec
+	url = https://github.com/servo/rust-smallvec.git
+	ignore = dirty
+[submodule "examples/rustsecs/gmath"]
+	path = examples/rustsecs/gmath
+	url = https://github.com/denosaurs/gmath.git
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2019-0016-isahc"]
+	path = examples/rustsecs/RUSTSEC-2019-0016-isahc
+	url = https://github.com/sagebind/isahc.git
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2023-0054-mail-internals"]
+	path = examples/rustsecs/RUSTSEC-2023-0054-mail-internals
+	url = https://git.sr.ht/~nabijaczleweli/mail-internals.crate
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2020-0038-ordnung"]
+	path = examples/rustsecs/RUSTSEC-2020-0038-ordnung
+	url = https://github.com/maciejhirsz/ordnung.git
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2025-0022-openssl"]
+	path = examples/rustsecs/RUSTSEC-2025-0022-openssl
+	url = https://github.com/sfackler/rust-openssl.git
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2018-0010-openssl"]
+	path = examples/rustsecs/RUSTSEC-2018-0010-openssl
+	url = https://github.com/sfackler/rust-openssl.git
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2022-0070-secp256k1"]
+	path = examples/rustsecs/RUSTSEC-2022-0070-secp256k1
+	url = https://github.com/rust-bitcoin/rust-secp256k1.git
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2020-0005-cbox-rs"]
+	path = examples/rustsecs/RUSTSEC-2020-0005-cbox-rs
+	url = https://github.com/TomBebbington/cbox-rs.git
+	ignore = dirty
+[submodule "examples/rustsecs/RUSTSEC-2022-0078-bumpalo"]
+	path = examples/rustsecs/RUSTSEC-2022-0078-bumpalo
+	url = https://github.com/fitzgen/bumpalo.git

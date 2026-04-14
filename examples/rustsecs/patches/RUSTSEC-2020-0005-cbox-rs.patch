@@ -1,0 +1,37 @@
+---
+ src/double_free.rs | 10 ++++++++++
+ src/lib.rs         |  2 ++
+ 2 files changed, 12 insertions(+)
+ create mode 100644 src/double_free.rs
+
+diff --git a/src/double_free.rs b/src/double_free.rs
+new file mode 100644
+index 0000000..06807e5
+--- /dev/null
++++ b/src/double_free.rs
+@@ -0,0 +1,10 @@
++use CSemiBox;
++use std::ops::Deref;
++
++pub fn main() {
++    let mut v = vec![1, 2, 3];
++    let p = v.as_mut_ptr();
++    let semibox: CSemiBox<'static, str> = CSemiBox::new(p as _);
++    drop(semibox);
++    println!("Hello World")
++}
+\ No newline at end of file
+diff --git a/src/lib.rs b/src/lib.rs
+index d6af8bf..ec844dc 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -1,4 +1,6 @@
+ //! Provides two types, `CSemiBox` and `DisposeRef`
++mod double_free;
++
+ extern crate libc;
+ use libc::{free, c_char, c_void, size_t};
+ use std::borrow::Borrow;
+-- 
+2.25.1
+

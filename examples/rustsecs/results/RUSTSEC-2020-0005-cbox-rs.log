@@ -1,0 +1,48 @@
+warning: no edition set: defaulting to the 2015 edition while the latest is 2021
+    Checking libc v0.2.12
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name libc --edition=2015 /home/weili/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.12/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --cfg 'feature="default"' --cfg 'feature="use_std"' --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values("default", "use_std"))' -C metadata=3eb84cc5a548c175 -C extra-filename=-3eb84cc5a548c175 --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2020-0005-cbox-rs/target/debug/deps -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2020-0005-cbox-rs/target/debug/deps --cap-lints allow -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="cbox"'`
+    Checking cbox v0.3.0 (/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2020-0005-cbox-rs)
+     Running `/home/weili/rust-analysis/pincer_tools/pincer/target/release/cargo-pincer /home/weili/.rustup/toolchains/nightly-2024-10-11-x86_64-unknown-linux-gnu/bin/rustc --crate-name cbox --edition=2015 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs)' --check-cfg 'cfg(feature, values())' -C metadata=9d899369e154fe2b -C extra-filename=-9d899369e154fe2b --out-dir /home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2020-0005-cbox-rs/target/debug/deps -C incremental=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2020-0005-cbox-rs/target/debug/incremental -L dependency=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2020-0005-cbox-rs/target/debug/deps --extern libc=/home/weili/rust-analysis/pincer_tools/pincer/examples/rustsecs/RUSTSEC-2020-0005-cbox-rs/target/debug/deps/liblibc-3eb84cc5a548c175.rmeta -Z always-encode-mir -Zmir-opt-level=0 --cfg 'pincer_target="cbox"'`
+warning: unused import: `std::ops::Deref`
+ --> src/double_free.rs:2:5
+  |
+2 | use std::ops::Deref;
+  |     ^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: elided lifetime has a name
+   --> src/lib.rs:136:37
+    |
+136 |     pub fn as_semi<'a>(&'a self) -> &CSemiBox<'a, D> {
+    |                    --               ^ this elided lifetime gets resolved as `'a`
+    |                    |
+    |                    lifetime `'a` declared here
+    |
+    = note: `#[warn(elided_named_lifetimes)]` on by default
+
+warning: elided lifetime has a name
+   --> src/lib.rs:142:45
+    |
+142 |     pub fn as_semi_mut<'a>(&'a mut self) -> &mut CSemiBox<'a, D> {
+    |                        --                   ^ this elided lifetime gets resolved as `'a`
+    |                        |
+    |                        lifetime `'a` declared here
+
+warning: function `main` is never used
+ --> src/double_free.rs:4:8
+  |
+4 | pub fn main() {
+  |        ^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+Number of vulnerable pointers: 3
+Double Free detected
+1 Bug(s) detected.
+Error seed #1: (main::bb0[5], <NonNull, {main::_6}, {}>) in DefId(0:6 ~ cbox[890f]::double_free::main)
+Analysis time: 0.01387088 seconds
+Used Memory Before Analysis: 94 MB
+Max Memory in Analysis: 94 MB
+warning: `cbox` (lib) generated 4 warnings (run `cargo fix --lib -p cbox` to apply 1 suggestion)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.48s

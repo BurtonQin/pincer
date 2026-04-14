@@ -1,0 +1,53 @@
+# Vulnerable pointer patterns for memory safety analysis.
+# Each entry identifies a program point where a raw pointer is considered "vulnerable"
+# (i.e., a seed for use-after-free / double-free tracking).
+#
+# Fields:
+#   kind:        call_destination | call_argument | parameter
+#   pattern:     string to match against the fully-qualified function path
+#   match_kind:  exact | suffix | contains | regex  (default: suffix)
+#   arg_index:   (call_argument only) 0-based index of the argument
+#   param_index: (parameter only) 1-based local index of the parameter (1 = first arg)
+
+patterns:
+  # --- CallDestination: raw pointer returned by these functions ---
+  - kind: call_destination
+    pattern: "as_ptr"
+    match_kind: suffix
+
+  - kind: call_destination
+    pattern: "as_mut_ptr"
+    match_kind: suffix
+
+  - kind: call_destination
+    pattern: "as_mut_c_ptr"
+    match_kind: suffix
+
+  - kind: call_destination
+    pattern: "triple_mut"
+    match_kind: suffix
+
+  - kind: call_destination
+    pattern: "into_raw"
+    match_kind: suffix
+
+  # --- CallArgument: raw pointer passed as argument to these functions ---
+  - kind: call_argument
+    pattern: "from_raw"
+    match_kind: suffix
+    arg_index: 0
+
+  - kind: call_argument
+    pattern: "from_raw_in"
+    match_kind: suffix
+    arg_index: 0
+
+  - kind: call_argument
+    pattern: "from_raw_parts"
+    match_kind: suffix
+    arg_index: 0
+
+  - kind: call_argument
+    pattern: "from_raw_parts_in"
+    match_kind: suffix
+    arg_index: 0

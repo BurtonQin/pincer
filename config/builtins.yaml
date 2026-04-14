@@ -1,0 +1,36 @@
+functions:
+  # Allocation
+  - pattern: "<.* as std::ffi::CString::new::SpecNewImpl>::spec_new_impl"
+    match_kind: regex
+    effects: [{ kind: alloc }]
+  - pattern: ".*BIO_new_mem_buf$"
+    match_kind: regex
+    effects: [{ kind: alloc }]
+
+  # Deallocation
+  - pattern: ".*BIO_free_all$"
+    match_kind: regex
+    effects: [{ kind: dealloc, arg: 0 }]
+  - pattern: "libc::free"
+    match_kind: exact
+    effects: [{ kind: dealloc, arg: 0 }]
+
+    
+
+  # --- Test builtin effects (used by tests/dataflow_tests/effects_handler_tests.rs) ---
+
+  # pincer_test_identity: returns a copy of the input pointer
+  - pattern: "pincer_test_identity"
+    match_kind: contains
+    effects: [{ kind: copy, from_arg: 0 }]
+
+  # pincer_test_load: dereferences a pointer-to-pointer and returns the inner pointer
+  - pattern: "pincer_test_load"
+    match_kind: contains
+    effects: [{ kind: load, from_arg: 0 }]
+
+  # pincer_test_store: stores src (arg1) into *dst (arg0)
+  - pattern: "pincer_test_store"
+    match_kind: contains
+    effects: [{ kind: store, to_arg: 0, from_arg: 1 }]
+

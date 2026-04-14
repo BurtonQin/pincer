@@ -1,0 +1,31 @@
+[package]
+name = "pincer"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = ["msa_with_bbcfg"]
+msa_with_bbcfg = []
+
+[dependencies]
+anyhow = "*"
+arrayvec = "*"
+cargo_metadata = "*"
+clap = "3.2"
+colored = "2"
+env_logger = "*"
+humantime = "*"
+itertools = "*"
+lazy_static = "1.4"
+libc = "*"
+log = "*"
+multimap = "*"
+nom = "7.1.*"
+nohash-hasher = "0.2"
+regex = "1.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "*"
+serde_yaml = "*"
+smallvec = "*"
+rustc_tools_util = "*"
+petgraph = "*"
