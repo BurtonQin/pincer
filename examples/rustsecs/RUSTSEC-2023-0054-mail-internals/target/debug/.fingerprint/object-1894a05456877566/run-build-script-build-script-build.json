@@ -1,1 +1,0 @@
-{"rustc":8399164345293381310,"features":"","declared_features":"","target":0,"profile":0,"path":0,"deps":[[16466323575622926142,"build_script_build",false,7052952384848291628]],"local":[{"Precalculated":"0.37.3"}],"rustflags":["-Z","always-encode-mir","-Zmir-opt-level=0","--cfg","pincer_target=\"mail_internals\""],"metadata":0,"config":0,"compile_kind":0}
