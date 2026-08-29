@@ -214,6 +214,9 @@ impl<'a, 'rta, 'tcx> BodyVisitor<'a, 'rta, 'tcx> {
                     }
                 }
             }
+            mir::Operand::RuntimeChecks(_) => {
+                warn!("Unexpected RuntimeChecks operand as call target");
+            }
         }
     }
 
@@ -239,7 +242,7 @@ impl<'a, 'rta, 'tcx> BodyVisitor<'a, 'rta, 'tcx> {
         if matches!(self.acx().get_known_name_for(*callee_def_id), KnownNames::StdThreadBuilderSpawnUnchecked) {
             let mut new_location = location;
             new_location.statement_index += 1;
-            let fn_once_defid = self.tcx().require_lang_item(LangItem::FnOnce, None);
+            let fn_once_defid = self.tcx().require_lang_item(LangItem::FnOnce, rustc_span::DUMMY_SP);
             self.inline_indirectly_called_function(&fn_once_defid, &gen_args, new_location);
 
             return;
@@ -292,16 +295,16 @@ impl<'a, 'rta, 'tcx> BodyVisitor<'a, 'rta, 'tcx> {
         // The fn_traits feature allows for implementation of the Fn* traits for
         // creating custom closure-like types. We first try to devirtualize the callee function
         // https://doc.rust-lang.org/beta/unstable-book/library-features/fn-traits.html
-        let param_env = rustc_middle::ty::ParamEnv::reveal_all();
+        let typing_env = rustc_middle::ty::TypingEnv::fully_monomorphized();
         // Instance::resolve panics if try_normalize_erasing_regions returns an error.
         // It is hard to figure out exactly when this will be the case.
-        if self.tcx().try_normalize_erasing_regions(param_env, *gen_args).is_err() {
+        if self.tcx().try_normalize_erasing_regions(typing_env, *gen_args).is_err() {
             debug!("Could not resolve fntrait call: {:?}, {:?}", callee_def_id, gen_args);
             return;
         }
         let resolved_instance = rustc_middle::ty::Instance::try_resolve(
             self.tcx(),
-            param_env,
+            typing_env,
             *callee_def_id,
             gen_args,
         );
@@ -429,10 +432,13 @@ impl<'a, 'rta, 'tcx> BodyVisitor<'a, 'rta, 'tcx> {
         let mut def_id = unevaluated.def;
         let args = self.generics_specializer.specialize_generic_args(unevaluated.args);
         if !args.is_empty() {
-            let param_env = rustc_middle::ty::ParamEnv::reveal_all();
-            if let Ok(Some(instance)) =
-                rustc_middle::ty::Instance::try_resolve(self.tcx(), param_env, def_id, args)
-            {
+            let typing_env = rustc_middle::ty::TypingEnv::fully_monomorphized();
+            if let Ok(Some(instance)) = rustc_middle::ty::Instance::try_resolve(
+                self.tcx(),
+                typing_env,
+                def_id,
+                args,
+            ) {
                 def_id = instance.def.def_id();
             }
             if self.tcx().is_mir_available(def_id) {
@@ -441,7 +447,7 @@ impl<'a, 'rta, 'tcx> BodyVisitor<'a, 'rta, 'tcx> {
         }
     }
 
-    fn visit_const_value(&mut self, val: mir::ConstValue<'tcx>) {
+    fn visit_const_value(&mut self, val: mir::ConstValue) {
         if let mir::ConstValue::Scalar(Scalar::Ptr(ptr, _size)) = val {
             if let Some(GlobalAlloc::Static(def_id)) = self.tcx().try_get_global_alloc(ptr.provenance.alloc_id()) {
                 self.rta.referenced_statics.insert(def_id);

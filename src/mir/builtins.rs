@@ -8,7 +8,7 @@ use regex::Regex;
 use rustc_middle::mir::{self, Operand, Place};
 use rustc_middle::ty::TyCtxt;
 use rustc_span::symbol::Symbol;
-use rustc_target::abi::VariantIdx;
+use rustc_abi::VariantIdx;
 use serde::Deserialize;
 
 use crate::analysis_context::AnalysisContext;

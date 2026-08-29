@@ -204,7 +204,7 @@ impl<'a, 'tcx> RapidTypeAnalysis<'a, 'tcx> {
                             }
                         }
                         rustc_middle::ty::TyKind::FnPtr(..) => {
-                            let fnptr_type = tcx.erase_regions_ty(*concrete_type);
+                            let fnptr_type = tcx.erase_and_anonymize_regions(*concrete_type);
                             for (callsite, _, _) in callsites_tuple {
                                 self.fnptr_callsites.entry(fnptr_type).or_default().insert(*callsite);
                             }
@@ -217,7 +217,7 @@ impl<'a, 'tcx> RapidTypeAnalysis<'a, 'tcx> {
 
                                 let resolved_instance = rustc_middle::ty::Instance::try_resolve(
                                     tcx,
-                                    rustc_middle::ty::ParamEnv::reveal_all(),
+                                    rustc_middle::ty::TypingEnv::fully_monomorphized(),
                                     *callee_def_id,
                                     replaced_args,
                                 );
@@ -304,7 +304,7 @@ impl<'a, 'tcx> RapidTypeAnalysis<'a, 'tcx> {
     ) {
         let dyn_type = type_util::strip_auto_traits(
             self.tcx(), 
-            self.tcx().erase_regions_ty(callee_gen_args[0].expect_ty())
+            self.tcx().erase_and_anonymize_regions(callee_gen_args[0].expect_ty())
         );
         trace!("Add dyn callsite: {:?}->{:?}", dyn_type, callsite);
         assert!(matches!(dyn_type.kind(), rustc_middle::ty::TyKind::Dynamic(..)));
@@ -319,14 +319,14 @@ impl<'a, 'tcx> RapidTypeAnalysis<'a, 'tcx> {
     ) {
         let dyn_fntrait_type = type_util::strip_auto_traits(
             self.tcx(), 
-            self.tcx().erase_regions_ty(callee_gen_args[0].expect_ty())
+            self.tcx().erase_and_anonymize_regions(callee_gen_args[0].expect_ty())
         );
         trace!("Add dyn_fn_trait callsite: {:?}->{:?}", dyn_fntrait_type, callsite);
         self.dyn_fntrait_callsites.entry(dyn_fntrait_type).or_default().insert((callsite, callee_def_id, callee_gen_args));
     }
 
     pub fn add_fnptr_callsite(&mut self, callsite: CallSite<'tcx>, fnptr_type: Ty<'tcx>) {
-        let fnptr_type =  self.tcx().erase_regions_ty(fnptr_type);
+        let fnptr_type =  self.tcx().erase_and_anonymize_regions(fnptr_type);
         trace!("Add fnptr callsite: {:?} -> {:?}", fnptr_type, callsite);
         self.fnptr_callsites.entry(fnptr_type).or_default().insert(callsite);
     }
@@ -335,15 +335,15 @@ impl<'a, 'tcx> RapidTypeAnalysis<'a, 'tcx> {
     pub fn add_possible_concrete_type(&mut self, dyn_ty: Ty<'tcx>, concrete_ty: Ty<'tcx>) {
         let dyn_ty = type_util::strip_auto_traits(
             self.tcx(), 
-            self.tcx().erase_regions_ty(dyn_ty)
+            self.tcx().erase_and_anonymize_regions(dyn_ty)
         );
-        let concrete_ty = self.tcx().erase_regions_ty(concrete_ty);
+        let concrete_ty = self.tcx().erase_and_anonymize_regions(concrete_ty);
         self.dynamic_to_possible_concrete_types.entry(dyn_ty).or_default().insert(concrete_ty);
     }
 
     pub fn add_possible_fnptr_target(&mut self, fnptr_type: Ty<'tcx>, fn_item_type: Ty<'tcx>) {
-        let fnptr_type = self.tcx().erase_regions_ty(fnptr_type);
-        let fn_item_type = self.tcx().erase_regions_ty(fn_item_type);
+        let fnptr_type = self.tcx().erase_and_anonymize_regions(fnptr_type);
+        let fn_item_type = self.tcx().erase_and_anonymize_regions(fn_item_type);
         trace!("Possible target fn item for fnptr type {:?}, {:?}", fnptr_type, fn_item_type);
         if let rustc_middle::ty::TyKind::FnPtr(fnsig, _) = fnptr_type.kind() {
             self.fnptr_sig_to_possible_targets.entry(fnsig.skip_binder()).or_default().insert(fn_item_type);
@@ -355,11 +355,11 @@ impl<'a, 'tcx> RapidTypeAnalysis<'a, 'tcx> {
     pub fn add_trait_upcasting_relation(&mut self, src_dyn_ty: Ty<'tcx>, tgt_dyn_ty: Ty<'tcx>) {
         let src_dyn_ty = type_util::strip_auto_traits(
             self.tcx(), 
-            self.tcx().erase_regions_ty(src_dyn_ty)
+            self.tcx().erase_and_anonymize_regions(src_dyn_ty)
         );
         let tgt_dyn_ty = type_util::strip_auto_traits(
             self.tcx(), 
-            self.tcx().erase_regions_ty(tgt_dyn_ty)
+            self.tcx().erase_and_anonymize_regions(tgt_dyn_ty)
         );
         if src_dyn_ty != tgt_dyn_ty {
             info!("trait_upcasting coercion from {:?} to {:?}", src_dyn_ty, tgt_dyn_ty);
@@ -411,10 +411,10 @@ impl<'a, 'tcx> RapidTypeAnalysis<'a, 'tcx> {
         // We cannot use BodyVisitor here because its GenericsSpecializer
         // incorrectly remaps type params in drop shim bodies.
         if !type_util::is_manually_drop(ty) {
-            let param_env = rustc_middle::ty::ParamEnv::reveal_all();
+            let typing_env = rustc_middle::ty::TypingEnv::fully_monomorphized();
             for (_fld_proj, field_ty) in drop_shim::get_field_and_types(self.tcx(), ty) {
                 if !type_util::contains_alias_projection(self.tcx(), field_ty)
-                    && !field_ty.needs_drop(self.tcx(), param_env)
+                    && !field_ty.needs_drop(self.tcx(), typing_env)
                 {
                     continue;
                 }

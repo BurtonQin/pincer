@@ -25,7 +25,7 @@ use std::cell::RefCell;
 use std::collections::HashSet;
 use std::ops::DerefMut;
 
-use rustc_middle::ty::{GenericArg, GenericArgKind, GenericArgsRef};
+use rustc_middle::ty::{self, GenericArg, GenericArgKind, GenericArgsRef};
 use rustc_middle::ty::{
     Const, ConstKind, ExistentialPredicate, ExistentialProjection, ExistentialTraitRef, 
     FnSig, FnSigTys, ParamConst, ParamTy, Ty, TyCtxt, TyKind,
@@ -59,7 +59,7 @@ impl<'tcx> GenericsSpecializer<'tcx> {
     }
 
     fn specialize_generic_argument(&self, gen_arg: GenericArg<'tcx>) -> GenericArg<'tcx> {
-        match gen_arg.unpack() {
+        match gen_arg.kind() {
             GenericArgKind::Type(ty) => self.specialize_generic_argument_type(ty).into(),
             GenericArgKind::Const(c) => self.specialize_const(c).into(),
             _ => gen_arg,
@@ -69,7 +69,7 @@ impl<'tcx> GenericsSpecializer<'tcx> {
     fn specialize_const(&self, constant: Const<'tcx>) -> Const<'tcx> {
         if let ConstKind::Param(ParamConst { index, name: _ }) = constant.kind() {
             if (index as usize) < self.generic_args.len() {
-                if let GenericArgKind::Const(c) = self.generic_args[index as usize].unpack() {
+                if let GenericArgKind::Const(c) = self.generic_args[index as usize].kind() {
                     return c;
                 }
             }
@@ -84,16 +84,17 @@ impl<'tcx> GenericsSpecializer<'tcx> {
             let specialized_substs = self.specialize_generic_args(projection.args);
             let item_def_id = projection.def_id;
             return if type_util::are_concrete(specialized_substs) {
-                let param_env = self
-                    .tcx
-                    .param_env(self.tcx.associated_item(item_def_id).container_id(self.tcx));
+                let typing_env = ty::TypingEnv::post_analysis(
+                    self.tcx,
+                    self.tcx.associated_item(item_def_id).container_id(self.tcx),
+                );
                 let new_proj_type = Ty::new_projection(self.tcx, projection.def_id, specialized_substs);
-                if let Ok(specialized_type) = self.tcx.try_normalize_erasing_regions(param_env, new_proj_type) {
+                if let Ok(specialized_type) = self.tcx.try_normalize_erasing_regions(typing_env, new_proj_type) {
                     return specialized_type;
                 }
                 if let Ok(Some(instance)) = rustc_middle::ty::Instance::try_resolve(
                     self.tcx, 
-                    param_env, 
+                    typing_env, 
                     item_def_id, 
                     specialized_substs
                 ) {
@@ -149,12 +150,12 @@ impl<'tcx> GenericsSpecializer<'tcx> {
                     let projection_trait = Some(self.tcx.parent(item_def_id));
                     if projection_trait == self.tcx.lang_items().pointee_trait() {
                         assert!(!specialized_substs.is_empty());
-                        if let GenericArgKind::Type(ty) = specialized_substs[0].unpack() {
+                        if let GenericArgKind::Type(ty) = specialized_substs[0].kind() {
                             return ty.ptr_metadata_ty(self.tcx, |ty| ty);
                         }
                     } else if projection_trait == self.tcx.lang_items().discriminant_kind_trait() {
                         assert!(!specialized_substs.is_empty());
-                        if let GenericArgKind::Type(enum_ty) = specialized_substs[0].unpack() {
+                        if let GenericArgKind::Type(enum_ty) = specialized_substs[0].kind() {
                             return enum_ty.discriminant_ty(self.tcx);
                         }
                     }
@@ -231,33 +232,32 @@ impl<'tcx> GenericsSpecializer<'tcx> {
                 let specialized_fn_sig = fn_sig.map_bound(map_fn_sig);
                 Ty::new_fn_ptr(self.tcx, specialized_fn_sig)
             }
-            TyKind::Dynamic(predicates, region, kind) => {
+            TyKind::Dynamic(predicates, region) => {
                 let specialized_predicates = predicates.iter().map(
                     |bound_pred: rustc_middle::ty::Binder<'_, ExistentialPredicate<'tcx>>| {
                         bound_pred.map_bound(|pred| match pred {
-                            ExistentialPredicate::Trait(ExistentialTraitRef { def_id, args }) => {
-                                ExistentialPredicate::Trait(ExistentialTraitRef {
-                                    def_id,
-                                    args: self.specialize_generic_args(args),
-                                })
+                            ExistentialPredicate::Trait(trait_ref) => {
+                                ExistentialPredicate::Trait(ExistentialTraitRef::new_from_args(
+                                    self.tcx,
+                                    trait_ref.def_id,
+                                    self.specialize_generic_args(trait_ref.args),
+                                ))
                             }
-                            ExistentialPredicate::Projection(ExistentialProjection {
-                                def_id,
-                                args,
-                                term,
-                            }) => {
-                                if let Some(ty) = term.as_type() {
-                                    ExistentialPredicate::Projection(ExistentialProjection {
-                                        def_id,
-                                        args: self.specialize_generic_args(args),
-                                        term: self.specialize_generic_argument_type(ty).into(),
-                                    })
+                            ExistentialPredicate::Projection(proj) => {
+                                if let Some(ty) = proj.term.as_type() {
+                                    ExistentialPredicate::Projection(ExistentialProjection::new_from_args(
+                                        self.tcx,
+                                        proj.def_id,
+                                        self.specialize_generic_args(proj.args),
+                                        self.specialize_generic_argument_type(ty).into(),
+                                    ))
                                 } else {
-                                    ExistentialPredicate::Projection(ExistentialProjection {
-                                        def_id,
-                                        args: self.specialize_generic_args(args),
-                                        term,
-                                    })
+                                    ExistentialPredicate::Projection(ExistentialProjection::new_from_args(
+                                        self.tcx,
+                                        proj.def_id,
+                                        self.specialize_generic_args(proj.args),
+                                        proj.term,
+                                    ))
                                 }
                             }
                             ExistentialPredicate::AutoTrait(_) => pred,
@@ -269,7 +269,6 @@ impl<'tcx> GenericsSpecializer<'tcx> {
                     self.tcx
                         .mk_poly_existential_predicates_from_iter(specialized_predicates),
                     *region,
-                    *kind,
                 )
             }
             TyKind::Closure(def_id, args) => {
@@ -309,7 +308,7 @@ impl<'tcx> GenericsSpecializer<'tcx> {
             ),
             TyKind::Param(ParamTy { index, name: _ }) => {
                 if (*index as usize) < self.generic_args.len() {
-                    match self.generic_args[*index as usize].unpack()
+                    match self.generic_args[*index as usize].kind()
                     {
                         GenericArgKind::Type(ty) => ty,
                         _ => { 

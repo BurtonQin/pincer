@@ -61,7 +61,7 @@ pub fn is_axm_compliant<'tcx>(
         *alias != source_path 
             && (tys.is_none()
                 || tys.as_ref().unwrap().is_empty()
-                || tys.as_ref().unwrap().iter().any(|ty| ty.is_unsafe_ptr()))
+                || tys.as_ref().unwrap().iter().any(|ty| ty.is_raw_ptr()))
     }) {
         return false;
     }
@@ -80,7 +80,7 @@ pub fn is_axm_compliant<'tcx>(
     }
     // If the source path is a direct raw pointer, like _1: *const T, we consider the data flow
     // as axm-non-compliant if it has any new alias
-    if !source_path.is_indirect() && source_tys.iter().any(|ty| ty.is_unsafe_ptr()) {
+    if !source_path.is_indirect() && source_tys.iter().any(|ty| ty.is_raw_ptr()) {
         if result_aliases
             .iter()
             .filter(|alias| **alias != source_path)

@@ -12,7 +12,7 @@ use rustc_middle::ty::{
     TypeVisitableExt,
 };
 use rustc_middle::ty::{GenericArgKind, GenericArgsRef};
-use rustc_target::abi::VariantIdx;
+use rustc_abi::{FieldIdx, VariantIdx};
 
 use crate::mir::drop_shim;
 use crate::mir::function::FuncDef;
@@ -56,7 +56,7 @@ pub fn get_field_type<'tcx>(tcx: TyCtxt<'tcx>, base_ty: Ty<'tcx>, ordinal: usize
         if def.is_union() || def.is_struct() {
             let variant = def.variants().iter().next().expect("at least one variant");
             assert!(ordinal < variant.fields.len());
-            let field = &variant.fields[ordinal.into()];
+            let field = &variant.fields[FieldIdx::from_usize(ordinal)];
             let ft = field_ty(tcx, field, args);
             return ft;
         } else {
@@ -163,7 +163,7 @@ pub fn field_ty<'tcx>(
 /// Returns false if any of the generic arguments are themselves generic
 pub fn are_concrete(generic_args: GenericArgsRef<'_>) -> bool {
     for gen_arg in generic_args.iter() {
-        if let GenericArgKind::Type(ty) = gen_arg.unpack() {
+        if let GenericArgKind::Type(ty) = gen_arg.kind() {
             if !is_concrete(ty.kind()) {
                 return false;
             }
@@ -209,8 +209,10 @@ pub fn is_fn_trait(tcx: TyCtxt<'_>, id: DefId) -> bool {
 pub fn is_dynamic_fn_trait<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> bool {
     if let TyKind::Dynamic(trait_data, ..) = ty.kind() {
         if let Some(principal) = trait_data.principal() {
-            let principal =
-                tcx.normalize_erasing_late_bound_regions(ParamEnv::reveal_all(), principal);
+            let principal = tcx.normalize_erasing_late_bound_regions(
+                rustc_middle::ty::TypingEnv::fully_monomorphized(),
+                principal,
+            );
             return is_fn_trait(tcx, principal.def_id);
         }
     }
@@ -268,7 +270,7 @@ pub fn is_foreign_pointer<'tcx>(ty: Ty<'tcx>) -> bool {
 }
 
 pub fn is_zst<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> bool {
-    tcx.layout_of(ParamEnv::reveal_all().and(ty))
+    tcx.layout_of(rustc_middle::ty::TypingEnv::fully_monomorphized().as_query_input(ty))
         .map_or(false, |layout| layout.is_zst())
 }
 
@@ -357,8 +359,8 @@ pub fn closure_field_types<'tcx>(ty: Ty<'tcx>) -> Vec<Ty<'tcx>> {
 /// Returns true if the two given types are equal after erasing regions
 /// Compare base types directly, ignoring generic arguments
 pub fn equal_types<'tcx>(tcx: TyCtxt<'tcx>, ty1: Ty<'tcx>, ty2: Ty<'tcx>) -> bool {
-    let ty1 = tcx.erase_regions_ty(ty1);
-    let ty2 = tcx.erase_regions_ty(ty2);
+    let ty1 = tcx.erase_and_anonymize_regions(ty1);
+    let ty2 = tcx.erase_and_anonymize_regions(ty2);
     if std::mem::discriminant(ty1.kind()) != std::mem::discriminant(ty2.kind()) {
         return false;
     }
@@ -471,7 +473,7 @@ pub fn matched_fn_sig<'tcx>(
 
 // Given a dynamic type like "dyn Trait + Send", return the dynamic type "dyn Trait"
 pub fn strip_auto_traits<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> Ty<'tcx> {
-    if let TyKind::Dynamic(predicates, region, kind) = ty.kind() {
+    if let TyKind::Dynamic(predicates, region) = ty.kind() {
         let new_predicates = predicates.iter().filter(
             |bound_pred: &rustc_middle::ty::Binder<'_, ExistentialPredicate<'tcx>>| match bound_pred
                 .skip_binder()
@@ -484,7 +486,6 @@ pub fn strip_auto_traits<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> Ty<'tcx> {
             tcx,
             tcx.mk_poly_existential_predicates_from_iter(new_predicates),
             *region,
-            *kind,
         )
     } else {
         ty
@@ -541,7 +542,7 @@ pub fn contains_alias_projection<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> bool 
         visited: &mut HashSet<DefId>,
     ) -> bool {
         gen_args.iter().any(|arg| {
-            if let rustc_middle::ty::GenericArgKind::Type(t) = arg.unpack() {
+            if let rustc_middle::ty::GenericArgKind::Type(t) = arg.kind() {
                 check(tcx, t, visited)
             } else {
                 false
@@ -570,7 +571,7 @@ fn normalize_ty_for_drop<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> Ty<'tcx> {
         TyKind::Adt(adt_def, args) => {
             // Recursively process generic arguments
             let new_args = tcx.mk_args_from_iter(args.iter().map(|arg| {
-                match arg.unpack() {
+                match arg.kind() {
                     GenericArgKind::Type(ty) => normalize_ty_for_drop(tcx, ty).into(),
                     _ => arg, // Keep lifetime and const arguments as-is
                 }
@@ -614,11 +615,11 @@ pub fn find_drop_impl<'tcx>(
     let drop_method = tcx
         .associated_items(drop_trait)
         .in_definition_order()
-        .find(|item| item.name == rustc_span::sym::drop)?
+        .find(|item| item.name() == rustc_span::sym::drop)?
         .def_id;
 
     // Find all implementations of Drop for this type
-    let param_env = rustc_middle::ty::ParamEnv::reveal_all();
+    let typing_env = rustc_middle::ty::TypingEnv::fully_monomorphized();
 
     // try_resolve may raises an internal compiler error if the type is not normalized
     if !matches!(
@@ -642,7 +643,7 @@ pub fn find_drop_impl<'tcx>(
     std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         if let Ok(Some(instance)) = rustc_middle::ty::Instance::try_resolve(
             tcx,
-            param_env,
+            typing_env,
             drop_method,
             tcx.mk_args(&[normalized_ty.into()]),
         ) {
@@ -655,15 +656,17 @@ pub fn find_drop_impl<'tcx>(
 
 pub fn is_drop_impl<'tcx>(tcx: TyCtxt<'tcx>, def_id: DefId) -> bool {
     // Check if this is a method in an impl block
-    if let Some(impl_def_id) = tcx.impl_of_method(def_id) {
-        // Check if this impl block implements the Drop trait
-        if let Some(trait_ref) = tcx.impl_trait_ref(impl_def_id) {
-            let trait_ref = trait_ref.skip_binder();
-            // Get the Drop trait def_id
-            if let Some(drop_trait) = tcx.lang_items().drop_trait() {
-                // Check if this impl is for the Drop trait
-                if trait_ref.def_id == drop_trait {
-                    return true;
+    if let Some(assoc_item) = tcx.opt_associated_item(def_id) {
+        if let rustc_middle::ty::AssocContainer::TraitImpl(_) = assoc_item.container {
+            // Check if this impl block implements the Drop trait
+            if let Some(trait_ref) = tcx.impl_opt_trait_ref(tcx.parent(def_id)) {
+                let trait_ref = trait_ref.skip_binder();
+                // Get the Drop trait def_id
+                if let Some(drop_trait) = tcx.lang_items().drop_trait() {
+                    // Check if this impl is for the Drop trait
+                    if trait_ref.def_id == drop_trait {
+                        return true;
+                    }
                 }
             }
         }

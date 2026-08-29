@@ -110,7 +110,7 @@ impl<'tcx> GatherRawPtrSources<'tcx> {
         body: &Body<'tcx>,
         statement: &mir::Statement<'tcx>
     ) {
-        let mir::Statement {kind, source_info: _} = statement;
+        let mir::Statement {kind, source_info: _, ..} = statement;
         match kind {
             mir::StatementKind::Assign(box (assigned_place, rvalue)) => {
                 match rvalue {
@@ -127,7 +127,7 @@ impl<'tcx> GatherRawPtrSources<'tcx> {
                         );
                     }
                     mir::Rvalue::Cast(mir::CastKind::Transmute, operand, ty) => {
-                        if ty.is_unsafe_ptr() {
+                        if ty.is_raw_ptr() {
                             let operand_ty = operand.ty(&body.local_decls, self.tcx);
                             if operand_ty.is_ref() {
                                 self.raw_ptr_sources.insert(
@@ -156,7 +156,7 @@ impl<'tcx> GatherRawPtrSources<'tcx> {
                         _operand, 
                         ty
                     ) => {
-                        assert!(ty.is_unsafe_ptr());
+                        assert!(ty.is_raw_ptr());
                         self.raw_ptr_sources.insert(
                             RawPtrSource {
                                 func_def: def_id, 
@@ -193,7 +193,7 @@ impl<'tcx> GatherRawPtrSources<'tcx> {
             } => {
                 // Detecting library functions calls that return raw pointers.
                 let dest_ty = destination.ty(body, self.tcx).ty;
-                if dest_ty.is_unsafe_ptr() {
+                if dest_ty.is_raw_ptr() {
                     if let mir::Operand::Constant(box constant) = func {
                         match constant.ty().kind() {
                             TyKind::FnDef(callee_def_id, ..) => {

@@ -90,6 +90,7 @@ impl<'analysis, 'tcx> BackwardFlowFunctions<'analysis, 'tcx> {
             mir::Operand::Constant(constant) => {
                 return self.compute_constant_assignment_targets(source, lplace, constant);
             }
+            mir::Operand::RuntimeChecks(_) => return smallvec![*source],
         };
 
         let rplace =

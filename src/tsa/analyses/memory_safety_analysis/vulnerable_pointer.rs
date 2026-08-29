@@ -146,13 +146,13 @@ fn visit_parameter<'tcx>(
                 if *param_index > mir.arg_count {
                     break;
                 }
-                let param_ty = mir.local_decls[(*param_index).into()].ty;
+                let param_ty = mir.local_decls[Local::from_usize(*param_index)].ty;
                 if param_ty.is_any_ptr() {
                     vulnerable_pointers.insert(VulnerablePointer {
                         ptr_path: AccessPath::from_rustc_place(
                             acx,
                             func,
-                            &Place::from(Local::from(*param_index)),
+                            &Place::from(Local::from_usize(*param_index)),
                         ),
                         unit: Unit::new(func, BasicBlock::from_usize(0).start_location()),
                     });

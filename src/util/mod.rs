@@ -31,12 +31,21 @@ use std::collections::HashSet;
 
 /// Returns the location of the rust system binaries that are associated with this build of pincer.
 /// The location is obtained by looking at the contents of the environmental variables that were
-/// set at the time pincer was compiled. If the rust compiler was installed by rustup, the variables
+/// set at the time pincer is compiled. If the rust compiler was installed by rustup, the variables
 /// `RUSTUP_HOME` and `RUSTUP_TOOLCHAIN` are used and these are set by the compiler itself.
 /// If the rust compiler was compiled and installed in some other way, for example from a source
 /// enlistment, then the `RUST_SYSROOT` variable must be set in the environment from which pincer
 /// is compiled.
 pub fn find_sysroot() -> String {
+    if let Ok(toolchain) = std::env::var("RUSTUP_TOOLCHAIN") {
+        let home = std::env::var("RUSTUP_HOME").unwrap_or_else(|_| {
+            std::env::var("HOME")
+                .map(|h| format!("{h}/.rustup"))
+                .unwrap_or_default()
+        });
+        return format!("{home}/toolchains/{toolchain}");
+    }
+    // Compile-time fallbacks (used when pincer is built in a rustup-managed environment).
     let home = option_env!("RUSTUP_HOME");
     let toolchain = option_env!("RUSTUP_TOOLCHAIN");
     match (home, toolchain) {
@@ -82,11 +91,15 @@ pub fn is_drop_in_place(tcx: TyCtxt<'_>, def_id: DefId) -> bool {
 /// Returns true if the function identified by `def_id` is defined as part of a trait.
 #[inline]
 pub fn is_trait_method(tcx: TyCtxt<'_>, def_id: DefId) -> bool {
-    if tcx.trait_of_item(def_id).is_some() {
-        true
-    } else {
-        false
-    }
+    tcx.opt_associated_item(def_id)
+        .map(|item| {
+            matches!(
+                item.container,
+                rustc_middle::ty::AssocContainer::Trait
+                    | rustc_middle::ty::AssocContainer::TraitImpl(_)
+            )
+        })
+        .unwrap_or(false)
 }
 
 /// Returns true if the function identified by `def_id` is defined in the Rust Standard Library.
@@ -133,7 +146,7 @@ pub fn contains_function<'tcx>(ty: Ty<'tcx>, tcx: TyCtxt<'tcx>) -> bool {
 
 /// Returns true if the function identified by def_id is a public function.
 pub fn is_public(def_id: DefId, tcx: TyCtxt<'_>) -> bool {
-    if tcx.hir().get_if_local(def_id).is_some() {
+    if tcx.hir_get_if_local(def_id).is_some() {
         let def_id = def_id.expect_local();
         match tcx
             .resolutions(())
@@ -143,8 +156,7 @@ pub fn is_public(def_id: DefId, tcx: TyCtxt<'_>) -> bool {
         {
             Some((_, vis)) => vis.is_public(),
             None => {
-                let hir_id = tcx.local_def_id_to_hir_id(def_id);
-                match tcx.hir_node(hir_id) {
+                match tcx.hir_node_by_def_id(def_id) {
                     Node::Expr(rustc_hir::Expr {
                         kind: rustc_hir::ExprKind::Closure { .. },
                         ..
@@ -154,10 +166,11 @@ pub fn is_public(def_id: DefId, tcx: TyCtxt<'_>) -> bool {
                             rustc_hir::ItemKind::Use(_, rustc_hir::UseKind::ListStem)
                             | rustc_hir::ItemKind::TyAlias(..),
                         ..
-                    }) => ty::Visibility::Restricted(tcx.parent_module(hir_id).to_def_id())
-                        .is_public(),
+                    }) => ty::Visibility::Restricted(tcx.parent_module(tcx.local_def_id_to_hir_id(def_id))).is_public(),
                     Node::ImplItem(..) => {
-                        let parent_def_id: LocalDefId = tcx.hir().get_parent_item(hir_id).def_id;
+                        let parent_def_id: LocalDefId = tcx
+                            .parent(def_id.to_def_id())
+                            .expect_local();
                         match tcx.hir_node_by_def_id(parent_def_id) {
                             Node::Item(rustc_hir::Item {
                                 kind:
@@ -167,13 +180,14 @@ pub fn is_public(def_id: DefId, tcx: TyCtxt<'_>) -> bool {
                                     }),
                                 ..
                             }) => tr
+                                .trait_ref
                                 .path
                                 .res
                                 .opt_def_id()
                                 .map_or_else(
                                     || {
                                         tcx.sess.dcx().span_delayed_bug(
-                                            tr.path.span,
+                                            tr.trait_ref.path.span,
                                             "trait without a def-id",
                                         );
                                         ty::Visibility::Public
@@ -261,16 +275,16 @@ pub fn try_to_devirtualize<'tcx>(
         return None;
     }
 
-    let param_env = rustc_middle::ty::ParamEnv::reveal_all();
+    let typing_env = rustc_middle::ty::TypingEnv::fully_monomorphized();
     let abi = tcx
         .type_of(def_id)
         .skip_binder()
         .fn_sig(tcx)
         .abi();    
-    let resolved_instance = if abi == rustc_target::spec::abi::Abi::Rust {
+    let resolved_instance = if abi == rustc_abi::ExternAbi::Rust {
         // Instance::resolve panics if try_normalize_erasing_regions returns an error.
         // It is difficult to determine exactly when this error will occur.
-        if tcx.try_normalize_erasing_regions(param_env, gen_args).is_err() {
+        if tcx.try_normalize_erasing_regions(typing_env, gen_args).is_err() {
             None
         } else if gen_args.has_param() {
             // Types with unresolved params can cause panics inside rustc's query system
@@ -283,7 +297,7 @@ pub fn try_to_devirtualize<'tcx>(
             std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
                 rustc_middle::ty::Instance::try_resolve(
                     tcx,
-                    param_env,
+                    typing_env,
                     def_id,
                     gen_args,
                 )

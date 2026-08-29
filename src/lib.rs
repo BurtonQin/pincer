@@ -13,6 +13,7 @@
 )]
 
 
+extern crate rustc_abi;
 extern crate rustc_borrowck;
 extern crate rustc_data_structures;
 extern crate rustc_driver;

@@ -82,7 +82,7 @@ impl<'tcx> AnalysisContext<'tcx> {
 
         // Find the DefId for the entry function
         if let Some(ref entry_func) = analysis_options.entry_func {
-            for local_def_id in tcx.hir().body_owners() {
+            for local_def_id in tcx.hir_crate_items(()).definitions() {
                 let def_kind = tcx.def_kind(local_def_id);
                 if def_kind == DefKind::Fn || def_kind == DefKind::AssocFn {
                     let item_name = tcx.item_name(local_def_id.to_def_id());
@@ -102,7 +102,7 @@ impl<'tcx> AnalysisContext<'tcx> {
                 entry_funcs.insert(entry_fn_def_id);
             } else {
                 // Add all public functions as entry functions for a library crate
-                for local_def_id in tcx.hir().body_owners() {
+                for local_def_id in tcx.hir_crate_items(()).definitions() {
                     let def_id = local_def_id.to_def_id();
                     if !matches!(tcx.def_kind(def_id), DefKind::Fn | DefKind::AssocFn) {
                         continue;
@@ -118,7 +118,7 @@ impl<'tcx> AnalysisContext<'tcx> {
                         // skipping generic functions
                         continue;
                     } 
-                    if tcx.is_const_fn_raw(def_id) {
+                    if tcx.is_const_fn(def_id) {
                         // skipping constant functions
                         continue;
                     } 

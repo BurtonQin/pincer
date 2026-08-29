@@ -15,7 +15,7 @@ use crate::util::type_util;
 use colored::*;
 use rustc_middle::mir::{self, Operand, Place};
 use rustc_span::symbol::Symbol;
-use rustc_target::abi::VariantIdx;
+use rustc_abi::VariantIdx;
 use smallvec::{smallvec, SmallVec};
 
 #[derive(Copy, Clone)]

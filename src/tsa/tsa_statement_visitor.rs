@@ -5,7 +5,7 @@ use rustc_middle::mir::{
 };
 use rustc_middle::ty::adjustment::PointerCoercion;
 use rustc_middle::ty::{Ty, TyCtxt};
-use rustc_target::abi::FieldIdx;
+use rustc_abi::FieldIdx;
 use crate::analysis_context::AnalysisContext;
 use crate::infoflow::data::access_path::AccessPath;
 use crate::infoflow::forward::forward_flow_functions::kill_source;
@@ -70,6 +70,7 @@ where
         let Statement {
             kind,
             source_info: _,
+            ..
         } = statement;
         match kind {
             StatementKind::Assign(box (place, rvalue)) => {
@@ -80,7 +81,6 @@ where
                 place,
                 variant_index,
             } => self.visit_set_discriminant(place, *variant_index),
-            StatementKind::Deinit(box place) => self.visit_deinit(place),
             StatementKind::StorageLive(local) => self.visit_storage_live(*local),
             StatementKind::StorageDead(local) => self.visit_storage_dead(*local),
             StatementKind::Retag(..) => (),
@@ -92,6 +92,7 @@ where
             }
             StatementKind::ConstEvalCounter => (),
             StatementKind::Nop => (),
+            StatementKind::BackwardIncompatibleDropHint { .. } => (),
         }
     }
 
@@ -144,8 +145,8 @@ where
             mir::Rvalue::RawPtr(_, rplace) => {
                 self.visit_ref_or_rawptr(&lplace, rplace, unit, &mut gen_set, &mut kill_set, true);
             }
-            mir::Rvalue::Aggregate(aggregate_kind, operands) => {
-                match aggregate_kind.as_ref() {
+            mir::Rvalue::Aggregate(box aggregate_kind, operands) => {
+                match aggregate_kind {
                     mir::AggregateKind::Array(_ty) => {
                         for (i, operand) in operands.iter().enumerate() {
                             let index_place = self.tcx().mk_place_elem(
@@ -165,23 +166,23 @@ where
                             );
                         }
                     }
-                    mir::AggregateKind::Adt(def, variant_idx, args, _, case_index) => {
+                    mir::AggregateKind::Adt(def, variant_idx, args, _user_annot, case_index) => {
                         let args = GenericsSpecializer::new(self.tcx(), self.func.generic_args)
                             .specialize_generic_args(args);
-                        let adt_def = self.tcx().adt_def(def);
+                        let adt_def = self.tcx().adt_def(*def);
                         let variant_def = &adt_def.variants()[*variant_idx];
                         if adt_def.is_union() {
-                            let case_index = case_index.unwrap_or(0usize.into());
+                            let case_index = case_index.unwrap_or(FieldIdx::from_usize(0));
                             let field = &variant_def.fields[case_index];
                             let field_ty = type_util::field_ty(self.tcx(), field, args);
                             let union_field = self.tcx().mk_place_field(
                                 lplace,
-                                FieldIdx::from_u32(case_index.as_u32()),
+                                case_index,
                                 field_ty,
                             );
                             self.visit_use(
                                 &union_field,
-                                &operands[0usize.into()],
+                                &operands[FieldIdx::from_usize(0)],
                                 unit,
                                 &mut gen_set,
                                 &mut kill_set,
@@ -195,18 +196,19 @@ where
                             };
 
                             for field in 0..operands.len() {
+                                let field_idx = FieldIdx::from_usize(field);
                                 let field_ty = type_util::field_ty(
                                     self.tcx(),
-                                    &variant_def.fields[field.into()],
+                                    &variant_def.fields[field_idx],
                                     args,
                                 );
                                 if type_util::is_zst(self.tcx(), field_ty) {
                                     continue;
                                 }
-                                let operand = operands.get(field.into()).unwrap();
+                                let operand = operands.get(field_idx).unwrap();
                                 let field_place = self.tcx().mk_place_field(
                                     adt_place,
-                                    FieldIdx::from_u32(field as u32),
+                                    field_idx,
                                     field_ty,
                                 );
                                 self.visit_use(
@@ -223,19 +225,20 @@ where
                     | mir::AggregateKind::Closure(..)
                     | mir::AggregateKind::Coroutine(..) => {
                         for field in 0..operands.len() {
+                            let field_idx = FieldIdx::from_usize(field);
                             let field_ty = type_util::get_field_type(self.tcx(), lty, field);
                             if type_util::is_zst(self.tcx(), field_ty) {
                                 continue;
                             }
-                            let operand = operands.get(field.into()).unwrap();
+                            let operand = operands.get(field_idx).unwrap();
                             let field_place = self.tcx().mk_place_field(
                                 lplace,
-                                FieldIdx::from_u32(field as u32),
+                                field_idx,
                                 field_ty,
                             );
                             self.visit_use(
                                 &field_place,
-                                &operand,
+                                operand,
                                 unit,
                                 &mut gen_set,
                                 &mut kill_set,
@@ -243,7 +246,7 @@ where
                         }
                     }
                     mir::AggregateKind::RawPtr(_ty, _mutbl) => {
-                        if let Some(operand) = operands.get(0usize.into()) {
+                        if let Some(operand) = operands.get(FieldIdx::from_usize(0)) {
                             self.visit_use(&lplace, operand, unit, &mut gen_set, &mut kill_set);
                         }
                     }
@@ -285,9 +288,7 @@ where
             mir::Rvalue::Discriminant(rplace) => {
                 self.visit_discriminant(&lplace, rplace);
             }
-            mir::Rvalue::Len(..)
-            | mir::Rvalue::NullaryOp(..)
-            | mir::Rvalue::UnaryOp(..) => {}
+            mir::Rvalue::UnaryOp(..) => {}
             _ => {}
         }
 
@@ -297,14 +298,12 @@ where
     fn visit_set_discriminant(
         &mut self,
         place: &Place<'tcx>,
-        variant_index: rustc_target::abi::VariantIdx,
+        variant_index: rustc_abi::VariantIdx,
     ) {
         self.out_state
             .borrow_mut()
             .set_discriminant(*place, ConstantValue::Constant(variant_index.as_u32()));
     }
-
-    fn visit_deinit(&mut self, _place: &Place<'tcx>) {}
 
     fn visit_storage_live(&mut self, _local: Local) {}
 
@@ -350,6 +349,7 @@ where
             mir::Operand::Constant(const_op) => {
                 self.visit_constant_assign(lplace, const_op);
             }
+            mir::Operand::RuntimeChecks(_) => {}
         }
     }
 
@@ -463,8 +463,8 @@ where
             return;
         }
 
-        let param_env = self.tcx().param_env(self.func.def_id);
-        if let Some(scalar) = const_.try_eval_scalar_int(self.tcx(), param_env) {
+        let typing_env = rustc_middle::ty::TypingEnv::non_body_analysis(self.tcx(), self.func.def_id);
+        if let Some(scalar) = const_.try_eval_scalar_int(self.tcx(), typing_env) {
             let val = scalar.to_uint(scalar.size());
             self.out_state
                 .borrow_mut()
@@ -486,10 +486,12 @@ where
         let src_ptr = match &copy_info.src {
             mir::Operand::Copy(src_ptr) | mir::Operand::Move(src_ptr) => src_ptr,
             mir::Operand::Constant(_const_op) => return,
+            mir::Operand::RuntimeChecks(_) => return,
         };
         let dst_ptr = match &copy_info.dst {
             mir::Operand::Copy(dst_ptr) | mir::Operand::Move(dst_ptr) => dst_ptr,
             mir::Operand::Constant(_const_op) => return,
+            mir::Operand::RuntimeChecks(_) => return,
         };
         self.visit_deref(src_ptr);
         let src_deref = self.tcx().mk_place_deref(*src_ptr);

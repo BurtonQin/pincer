@@ -97,7 +97,7 @@ impl<'tcx> ProjectionIndexer<'tcx> {
                 mir::PlaceElem::Deref
                 | mir::PlaceElem::Subslice { .. }
                 | mir::PlaceElem::OpaqueCast(_)
-                | mir::PlaceElem::Subtype(_) => None,
+                | mir::PlaceElem::UnwrapUnsafeBinder(_) => None,
             })
             .collect::<AggTyElems>();
 

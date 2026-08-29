@@ -5,7 +5,7 @@ use rustc_middle::mir::{
     self, BasicBlock, BasicBlockData, Body, Local, LocalDecl, Operand, Place, PlaceElem,
     Rvalue, SourceInfo, SourceScopeData, Statement, StatementKind, Terminator, TerminatorKind,
 };
-use rustc_middle::ty::{Instance, InstanceKind, ParamEnv, Ty, TyCtxt, TyKind, TypeVisitableExt};
+use rustc_middle::ty::{Instance, InstanceKind, Ty, TyCtxt, TyKind, TypeVisitableExt};
 use rustc_span::{source_map::Spanned, DUMMY_SP};
 use std::cell::RefCell;
 use std::collections::HashMap;
@@ -50,7 +50,7 @@ impl<'tcx> DropShims<'tcx> {
 /// Used as the identifier for drop shim FuncDefs so that explicit
 /// `drop_in_place` calls naturally produce matching FuncDefs.
 pub fn drop_shim_def_id(tcx: TyCtxt<'_>) -> DefId {
-    tcx.require_lang_item(LangItem::DropInPlace, None)
+    tcx.require_lang_item(LangItem::DropInPlace, rustc_span::DUMMY_SP)
 }
 
 /// Creates a `FuncDef` representing a drop shim for `ty`.
@@ -110,9 +110,9 @@ fn make_fallback_drop_body<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> &'tcx Body<
         let local_3 = Local::from_usize(3);
 
         // _2 = &mut (*_1)
-        let ref_assign = Statement {
-            source_info: SourceInfo::outermost(DUMMY_SP),
-            kind: StatementKind::Assign(Box::new((
+        let ref_assign = Statement::new(
+            SourceInfo::outermost(DUMMY_SP),
+            StatementKind::Assign(Box::new((
                 local_2.into(),
                 Rvalue::Ref(
                     tcx.lifetimes.re_erased,
@@ -122,7 +122,7 @@ fn make_fallback_drop_body<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> &'tcx Body<
                     tcx.mk_place_deref(Place::from(local_1)),
                 ),
             ))),
-        };
+        );
 
         // Call <T as Drop>::drop(move _2) -> next_block
         let drop_call = Terminator {
@@ -148,22 +148,24 @@ fn make_fallback_drop_body<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> &'tcx Body<
             },
         };
 
-        basic_blocks_data.push(BasicBlockData {
-            statements: vec![ref_assign],
-            terminator: Some(drop_call),
-            is_cleanup: false,
-        });
+        basic_blocks_data.push(BasicBlockData::new_stmts(
+            vec![ref_assign],
+            Some(drop_call),
+            false,
+        ));
         curr_block += 1;
     }
 
     // For each field that needs drop, add a Drop terminator
     if !is_manually_drop {
-        let param_env = ParamEnv::reveal_all();
+        let typing_env = rustc_middle::ty::TypingEnv::fully_monomorphized();
         for (fld_proj, field_ty) in get_field_and_types(tcx, ty) {
             // needs_drop ICEs on types containing alias projections
             // (e.g., Vec<A::Assoc>) because rustc cannot normalize them.
             // Skip the check for such types — conservatively assume they need drop.
-            if !type_util::contains_alias_projection(tcx, field_ty) && !field_ty.needs_drop(tcx, param_env) {
+            if !type_util::contains_alias_projection(tcx, field_ty)
+                && !field_ty.needs_drop(tcx, typing_env)
+            {
                 continue;
             }
 
@@ -182,27 +184,31 @@ fn make_fallback_drop_body<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> &'tcx Body<
                     target: BasicBlock::from_usize(curr_block + 1),
                     unwind: mir::UnwindAction::Continue,
                     replace: false,
+                    // Cleanup to be done if the coroutine is dropped at this suspend point (for async drop).
+                    drop: None,
+                    // Prepared async future local (for async drop).
+                    async_fut: None,
                 },
             };
 
-            basic_blocks_data.push(BasicBlockData {
-                statements: Vec::new(),
-                terminator: Some(fld_drop),
-                is_cleanup: false,
-            });
+            basic_blocks_data.push(BasicBlockData::new_stmts(
+                Vec::new(),
+                Some(fld_drop),
+                false,
+            ));
             curr_block += 1;
         }
     }
 
     // Return block
-    basic_blocks_data.push(BasicBlockData {
-        statements: Vec::new(),
-        terminator: Some(Terminator {
+    basic_blocks_data.push(BasicBlockData::new_stmts(
+        Vec::new(),
+        Some(Terminator {
             source_info: SourceInfo::outermost(DUMMY_SP),
             kind: TerminatorKind::Return,
         }),
-        is_cleanup: false,
-    });
+        false,
+    ));
 
     // Minimal source_scopes (required by Body::new)
     let mut source_scopes = IndexVec::new();
@@ -235,7 +241,7 @@ fn make_fallback_drop_body<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> &'tcx Body<
 /// drop shim generator. For types containing alias projections (e.g., `<A as Trait>::Assoc`),
 /// constructs a fallback body since rustc ICEs on those.
 pub fn resolve_drop_shim_body<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> &'tcx Body<'tcx> {
-    let def_id = tcx.require_lang_item(LangItem::DropInPlace, None);
+    let def_id = tcx.require_lang_item(LangItem::DropInPlace, rustc_span::DUMMY_SP);
     let noop = || tcx.instance_mir(InstanceKind::DropGlue(def_id, None));
 
     // Types containing alias projections (e.g., Vec<A::Assoc>) cause ICEs in
@@ -255,7 +261,12 @@ pub fn resolve_drop_shim_body<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> &'tcx Bo
     // tcx.instance_mir can ICE for certain complex types.
     std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
         let args = tcx.mk_args(&[ty.into()]);
-        match Instance::try_resolve(tcx, ParamEnv::reveal_all(), def_id, args) {
+        match Instance::try_resolve(
+            tcx,
+            rustc_middle::ty::TypingEnv::fully_monomorphized(),
+            def_id,
+            args,
+        ) {
             Ok(Some(instance)) => tcx.instance_mir(instance.def),
             _ => noop(),
         }

@@ -45,7 +45,7 @@ impl<'tcx> ToString for FuncDef<'tcx> {
             let tys = self
                 .generic_args
                 .iter()
-                .filter_map(|gen_arg| match &gen_arg.unpack() {
+                .filter_map(|gen_arg| match &gen_arg.kind() {
                     GenericArgKind::Type(ty) => Some(format!("{:?}", ty)),
                     GenericArgKind::Const(c) => Some(const_to_str(c)),
                     _ => None,

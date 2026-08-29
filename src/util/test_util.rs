@@ -1,6 +1,5 @@
-use rustc_data_structures::sync::Lrc;
+use std::sync::Arc;
 use rustc_interface::interface;
-use rustc_interface::Queries;
 use rustc_middle::ty::TyCtxt;
 use rustc_span::source_map::FileLoader;
 use std::path::Path;
@@ -33,8 +32,12 @@ impl FileLoader for StringLoader {
         Ok(self.0.clone())
     }
 
-    fn read_binary_file(&self, path: &Path) -> io::Result<Lrc<[u8]>> {
+    fn read_binary_file(&self, path: &Path) -> io::Result<Arc<[u8]>> {
         Ok(fs::read(path)?.into())
+    }
+
+    fn current_directory(&self) -> io::Result<std::path::PathBuf> {
+        std::env::current_dir()
     }
 }
 
@@ -42,6 +45,7 @@ impl FileLoader for StringLoader {
 /// the provided closure
 pub fn compile(rust_source: String, f: impl for<'tcx> FnOnce(TyCtxt) + Send) {
     let mut callbacks = TestCallbacks {
+        rust_source: Some(rust_source),
         callback: Some(move |tcx: TyCtxt<'_>| f(tcx)),
     };
     let args = [
@@ -61,15 +65,11 @@ pub fn compile(rust_source: String, f: impl for<'tcx> FnOnce(TyCtxt) + Send) {
     .map(str::to_owned)
     .collect::<Box<_>>();
 
-    rustc_driver::catch_fatal_errors(|| {
-        let mut compiler = rustc_driver::RunCompiler::new(&args, &mut callbacks);
-        compiler.set_file_loader(Some(Box::new(StringLoader(rust_source))));
-        let _ = compiler.run();
-    })
-    .unwrap();
+    rustc_driver::run_compiler(&args, &mut callbacks);
 }
 
 struct TestCallbacks<Cb> {
+    rust_source: Option<String>,
     callback: Option<Cb>,
 }
 
@@ -78,23 +78,27 @@ where
     Cb: FnOnce(TyCtxt<'_>),
 {
     fn config(&mut self, config: &mut rustc_interface::Config) {
+        if let Some(rust_source) = self.rust_source.take() {
+            config.file_loader = Some(Box::new(StringLoader(rust_source)));
+        }
         config.override_queries = Some(borrowck_facts::override_queries);
     }
 
     fn after_analysis<'tcx>(
         &mut self,
         compiler: &interface::Compiler,
-        queries: &'tcx Queries<'tcx>,
+        tcx: TyCtxt<'tcx>,
     ) -> rustc_driver::Compilation {
         compiler.sess.dcx().abort_if_errors();
-        let callback = self.callback.take().unwrap();
-        queries.global_ctxt().unwrap().enter(|tcx| callback(tcx));
+        if let Some(callback) = self.callback.take() {
+            callback(tcx);
+        }
         rustc_driver::Compilation::Stop
     }
 }
 
 pub fn get_func(tcx: TyCtxt<'_>, fn_name: &str) -> Option<DefId> {
-    for local_def_id in tcx.hir().body_owners() {
+    for local_def_id in tcx.hir_crate_items(()).definitions() {
         let def_kind = tcx.def_kind(local_def_id);
         if def_kind == rustc_hir::def::DefKind::Fn || def_kind == rustc_hir::def::DefKind::AssocFn {
             let item_name = tcx.item_name(local_def_id.to_def_id());
@@ -369,7 +373,7 @@ fn test_with_tcx() {
 
     compile(rust_code.to_string(), |tcx| {
         // Use tcx for analysis here
-        for local_def_id in tcx.hir().body_owners() {
+        for local_def_id in tcx.hir_crate_items(()).definitions() {
             let def_kind = tcx.def_kind(local_def_id);
             if def_kind == DefKind::Fn || def_kind == DefKind::AssocFn {
                 let item_name = tcx.item_name(local_def_id.to_def_id());

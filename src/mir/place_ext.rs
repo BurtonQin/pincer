@@ -1,7 +1,7 @@
 use rustc_hir::def_id::DefId;
 use rustc_middle::mir::{Body, Place, PlaceElem, ProjectionElem};
 use rustc_middle::ty::{Ty, TyCtxt, TyKind};
-use rustc_target::abi::FieldIdx;
+use rustc_abi::FieldIdx;
 
 use crate::util::type_util;
 
@@ -187,7 +187,7 @@ impl<'tcx> PlaceExt<'tcx> for Place<'tcx> {
                         _ => return false, // Downcast on non-enum
                     }
                 }
-                PlaceElem::OpaqueCast(ty) | PlaceElem::Subtype(ty) => ty,
+                PlaceElem::OpaqueCast(ty) | PlaceElem::UnwrapUnsafeBinder(ty) => ty,
             };
         }
 

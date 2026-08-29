@@ -13,7 +13,7 @@ use log::*;
 use rustc_middle::mir::{self as rustc_mir, Location, Operand, Place, TerminatorKind};
 use rustc_middle::ty::adjustment::PointerCoercion;
 use rustc_middle::ty::{Ty, TyCtxt, TyKind};
-use rustc_target::abi::FieldIdx;
+use rustc_abi::FieldIdx;
 use smallvec::{smallvec, SmallVec};
 
 use crate::analysis_context::AnalysisContext;
@@ -332,18 +332,18 @@ pub fn apply_assignment_flow<'tcx>(
                     // expression SomeUnion { c: .. }, the active field index would
                     // identity the field c
                     if adt_def.is_union() {
-                        let case_index = case_index.unwrap_or(0usize.into());
+                        let case_index = case_index.unwrap_or(FieldIdx::from_usize(0));
                         let field = &variant_def.fields[case_index];
                         let field_ty = type_util::field_ty(tcx, field, args);
                         let union_field = tcx.mk_place_field(
                             *lplace,
-                            FieldIdx::from_u32(case_index.as_u32()),
+                            case_index,
                             field_ty,
                         );
                         return Some(move_or_copy(
                             source,
                             &union_field,
-                            &operands[0usize.into()],
+                            &operands[FieldIdx::from_usize(0)],
                             curr,
                         ));
                     } else if adt_def.is_enum() {
@@ -354,18 +354,19 @@ pub fn apply_assignment_flow<'tcx>(
                     // Struct/enum: build field pairs, delegate to callback.
                     let field_pairs: Vec<_> = (0..operands.len())
                         .filter_map(|field| {
+                            let field_idx = FieldIdx::from_usize(field);
                             let field_ty = type_util::field_ty(
                                 tcx,
-                                &variant_def.fields[field.into()],
+                                &variant_def.fields[field_idx],
                                 args,
                             );
                             if type_util::is_zst(tcx, field_ty) {
                                 return None;
                             }
-                            let operand = operands.get(field.into()).unwrap();
+                            let operand = operands.get(field_idx).unwrap();
                             let field_place = tcx.mk_place_field(
                                 adt_place,
-                                FieldIdx::from_u32(field as u32),
+                                field_idx,
                                 field_ty,
                             );
                             Some((field_place, operand.clone()))
@@ -380,15 +381,16 @@ pub fn apply_assignment_flow<'tcx>(
                     let lplace_ty = type_util::place_ty(tcx, lplace, func);
                     let field_pairs: Vec<_> = (0..operands.len())
                         .filter_map(|field| {
+                            let field_idx = FieldIdx::from_usize(field);
                             let field_ty =
                                 type_util::get_field_type(tcx, lplace_ty, field);
                             if type_util::is_zst(tcx, field_ty) {
                                 return None;
                             }
-                            let operand = operands.get(field.into()).unwrap();
+                            let operand = operands.get(field_idx).unwrap();
                             let field_place = tcx.mk_place_field(
                                 *lplace,
-                                FieldIdx::from_u32(field as u32),
+                                field_idx,
                                 field_ty,
                             );
                             Some((field_place, operand.clone()))
@@ -397,14 +399,8 @@ pub fn apply_assignment_flow<'tcx>(
 
                     Some(aggr_fields(source, *lplace, &field_pairs, curr))
                 }
-                // Construct a raw pointer from the data pointer and metadata.
-                // The Ty here is the type of the pointee, not the pointer itself.
-                // The Mutability indicates whether this produces a *const or *mut.
-                // The Rvalue::Aggregate operands for thus must be
-                // 0. A raw pointer of matching mutability with any core::ptr::Thin pointee
-                // 1. A value of the appropriate core::ptr::Pointee::Metadata type
                 rustc_mir::AggregateKind::RawPtr(_ty, _mutbl) => {
-                    if let Some(operand) = operands.get(0usize.into()) {
+                    if let Some(operand) = operands.get(FieldIdx::from_usize(0)) {
                         Some(move_or_copy(source, lplace, operand, curr))
                     } else {
                         Some(smallvec![])
@@ -469,9 +465,7 @@ pub fn apply_assignment_flow<'tcx>(
             }
         }
         // No-ops: no pointer flow through these
-        rustc_mir::Rvalue::Len(..)
-        | rustc_mir::Rvalue::NullaryOp(..)
-        | rustc_mir::Rvalue::UnaryOp(..)
+        rustc_mir::Rvalue::UnaryOp(..)
         | rustc_mir::Rvalue::Discriminant(..) => None,
         _ => None,
     }

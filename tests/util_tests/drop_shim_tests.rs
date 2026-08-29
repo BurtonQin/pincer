@@ -3,13 +3,14 @@
 
 #[cfg(test)]
 mod test {
+    extern crate rustc_span;
     use pincer::mir::drop_shim;
     use pincer::util::test_util::{compile, get_func};
     use rustc_hir::def_id::DefId;
     use rustc_hir::LangItem;
-    use rustc_middle::mir::pretty::{write_mir_fn, PrettyPrintMirOptions};
+    use rustc_middle::mir::pretty::MirWriter;
     use rustc_middle::mir::Body;
-    use rustc_middle::ty::{Instance, ParamEnv, Ty, TyCtxt, TyKind};
+    use rustc_middle::ty::{self, Instance, Ty, TyCtxt, TyKind};
 
     /// Returns the type of a named local variable in a function's MIR.
     fn get_var_ty<'tcx>(tcx: TyCtxt<'tcx>, func: DefId, var_name: &str) -> Ty<'tcx> {
@@ -23,8 +24,7 @@ mod test {
     fn dump_drop_shim_body<'tcx>(tcx: TyCtxt<'tcx>, label: &str, ty: Ty<'tcx>, body: &Body<'tcx>) {
         println!("\n===== Drop shim for: {} (type: {:?}) =====", label, ty);
         let mut buf = Vec::new();
-        let options = PrettyPrintMirOptions { include_extra_comments: false };
-        write_mir_fn(tcx, body, &mut |_, _| Ok(()), &mut buf, options).unwrap();
+        MirWriter::new(tcx).write_mir_fn(body, &mut buf).unwrap();
         println!("{}", String::from_utf8(buf).unwrap());
         println!("===== End drop shim for: {} =====\n", label);
     }
@@ -358,10 +358,11 @@ mod test {
     /// Try to resolve a drop shim via rustc directly (bypassing is_concrete check).
     /// Returns Ok(body) if rustc can generate it, Err(reason) if it panics/fails.
     fn try_rustc_shim<'tcx>(tcx: TyCtxt<'tcx>, ty: Ty<'tcx>) -> Result<&'tcx Body<'tcx>, String> {
-        let def_id = tcx.require_lang_item(LangItem::DropInPlace, None);
+        let def_id = tcx.require_lang_item(LangItem::DropInPlace, rustc_span::DUMMY_SP);
         std::panic::catch_unwind(std::panic::AssertUnwindSafe(|| {
             let args = tcx.mk_args(&[ty.into()]);
-            match Instance::try_resolve(tcx, ParamEnv::reveal_all(), def_id, args) {
+            let typing_env = ty::TypingEnv::fully_monomorphized();
+            match Instance::try_resolve(tcx, typing_env, def_id, args) {
                 Ok(Some(instance)) => {
                     let body = tcx.instance_mir(instance.def);
                     Ok(body)

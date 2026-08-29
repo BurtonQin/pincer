@@ -95,6 +95,7 @@ impl<'analysis, 'tcx> ForwardFlowFunctions<'analysis, 'tcx> {
         let rplace = match operand {
             mir::Operand::Copy(rplace) | mir::Operand::Move(rplace) => rplace,
             mir::Operand::Constant(_constant) => return res,
+            mir::Operand::RuntimeChecks(_) => return res,
         };
 
         let rplace =

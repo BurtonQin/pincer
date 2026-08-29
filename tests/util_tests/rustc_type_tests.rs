@@ -176,7 +176,7 @@ mod test {
                 panic!("expected Foo to be an ADT type");
             };
             assert!(def.is_struct(), "Foo should be a struct");
-            let field_ty = def.variants().iter().next().unwrap().fields[0usize.into()].ty(tcx, args);
+            let field_ty = def.variants().iter().next().unwrap().fields[rustc_abi::FieldIdx::from_usize(0)].ty(tcx, args);
             assert!(
                 matches!(field_ty.kind(), TyKind::Adt(inner_def, _) if inner_def.is_struct()),
                 "Foo::f should be a struct type (Bar<Option<i32>>)"

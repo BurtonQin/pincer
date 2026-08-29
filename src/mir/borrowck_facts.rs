@@ -1,41 +1,28 @@
-//! Polonius integration to extract borrowck facts from rustc.
-
-use rustc_borrowck::consumers::{BodyWithBorrowckFacts, ConsumerOptions};
+use rustc_borrowck::consumers::{self, BodyWithBorrowckFacts, ConsumerOptions};
 use rustc_hir::def_id::LocalDefId;
-use rustc_middle::{mir::BorrowCheckResult, ty::TyCtxt, util::Providers};
+use rustc_middle::ty::TyCtxt;
 
 use crate::util::cache::Cache;
 
 /// You must use this function in [`rustc_driver::Callbacks::config`] to call [`get_body_with_borrowck_facts`].
-///
-/// For why we need to do override mir_borrowck, see:
-/// <https://github.com/rust-lang/rust/blob/485ced56b8753ec86936903f2a8c95e9be8996a1/src/test/run-make-fulldeps/obtain-borrowck/driver.rs>
-pub fn override_queries(_session: &rustc_session::Session, local: &mut Providers) {
-    local.mir_borrowck = mir_borrowck;
+pub fn override_queries(_session: &rustc_session::Session, _local: &mut rustc_middle::util::Providers) {
 }
 
 thread_local! {
     static MIR_BODIES: Cache<LocalDefId, BodyWithBorrowckFacts<'static>> = Cache::default();
 }
 
-fn mir_borrowck(tcx: TyCtxt<'_>, def_id: LocalDefId) -> &BorrowCheckResult<'_> {
-    let body_with_facts = rustc_borrowck::consumers::get_body_with_borrowck_facts(
+fn fetch_body_with_borrowck_facts(tcx: TyCtxt<'_>, def_id: LocalDefId) -> BodyWithBorrowckFacts<'static> {
+    let mut bodies = consumers::get_bodies_with_borrowck_facts(
         tcx,
         def_id,
         ConsumerOptions::PoloniusInputFacts,
     );
-
-    // SAFETY: The reader casts the 'static lifetime to 'tcx before using it.
-    let body_with_facts: BodyWithBorrowckFacts<'static> =
-        unsafe { std::mem::transmute(body_with_facts) };
-    MIR_BODIES.with(|cache| {
-        cache.get(&def_id, |_| body_with_facts);
+    let body_with_facts = bodies.remove(&def_id).unwrap_or_else(|| {
+        panic!("borrowck facts not found for {def_id:?}")
     });
-
-    let mut providers = Providers::default();
-    rustc_borrowck::provide(&mut providers);
-    let original_mir_borrowck = providers.mir_borrowck;
-    original_mir_borrowck(tcx, def_id)
+    // SAFETY: The reader casts the 'static lifetime to 'tcx before using it.
+    unsafe { std::mem::transmute(body_with_facts) }
 }
 
 /// Gets the MIR body and [Polonius](https://github.com/rust-lang/polonius)-generated
@@ -54,14 +41,8 @@ pub fn get_body_with_borrowck_facts(
     tcx: TyCtxt<'_>,
     def_id: LocalDefId,
 ) -> &BodyWithBorrowckFacts<'_> {
-    let _ = tcx.mir_borrowck(def_id);
     MIR_BODIES.with(|cache| {
-        let body = cache.get(&def_id, |_| {
-            panic!(
-                "mir_borrowck override should have stored body for item: {def_id:?}. 
-                Are you sure you registered borrowck_facts::override_queries?"
-            )
-        });
+        let body = cache.get(&def_id, |_| fetch_body_with_borrowck_facts(tcx, def_id));
         unsafe {
             std::mem::transmute::<&BodyWithBorrowckFacts<'static>, &BodyWithBorrowckFacts<'_>>(body)
         }
