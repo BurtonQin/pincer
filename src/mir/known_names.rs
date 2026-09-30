@@ -262,7 +262,7 @@ impl KnownNamesCache {
             if is_foreign_module(def_path_data) {
                 get_path_data_elem_name(def_path_data_iter.next())
                     .map(|n| match n.as_str() {
-                        "RawVec" => KnownNames::RustAlloc,
+                        "__rust_alloc" | "RawVec" => KnownNames::RustAlloc,
                         "__rust_alloc_zeroed" => KnownNames::RustAllocZeroed,
                         "__rust_dealloc" => KnownNames::RustDealloc,
                         "__rust_realloc" => KnownNames::RustRealloc,

@@ -265,7 +265,8 @@ where
                     mir::CastKind::PointerCoercion(PointerCoercion::MutToConstPointer, _)
                     | mir::CastKind::PointerCoercion(PointerCoercion::Unsize, _)
                     | mir::CastKind::PointerCoercion(PointerCoercion::ArrayToPointer, _)
-                    | mir::CastKind::PtrToPtr => {
+                    | mir::CastKind::PtrToPtr
+                    | mir::CastKind::Transmute => {
                         self.visit_use(&lplace, operand, unit, &mut gen_set, &mut kill_set);
                     }
                     _ => {}

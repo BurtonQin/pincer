@@ -428,7 +428,8 @@ pub fn apply_assignment_flow<'tcx>(
                 // In practice, we find that most casts from *const [T; N] to *const T are
                 // classified as CastKind::PtrToPtr
                 | rustc_mir::CastKind::PointerCoercion(PointerCoercion::ArrayToPointer, _)
-                | rustc_mir::CastKind::PtrToPtr => {
+                | rustc_mir::CastKind::PtrToPtr
+                | rustc_mir::CastKind::Transmute => {
                     // With index-based representation for access paths, we treat cast as direct assignment.
                     Some(move_or_copy(source, lplace, operand, curr))
                 }
