@@ -1,4 +1,5 @@
 use log::*;
+use rustc_hir::def_id::LOCAL_CRATE;
 use rustc_middle::mir::{BasicBlock, Operand, Place};
 use rustc_middle::ty::TyCtxt;
 use std::collections::{HashMap, HashSet};
@@ -24,6 +25,7 @@ use crate::mir::unit::Unit;
 use crate::tsa::aliasing_xor_mutability::is_axm_compliant;
 use crate::tsa::analyses::memory_safety_analysis::{
     null_state::NullState, null_state_transition::NullStateTransition,
+    sarif::{build_sarif_log, SarifFinding},
     vulnerable_pointer::VulnerablePointer,
 };
 use crate::tsa::state::TypeState;
@@ -31,10 +33,12 @@ use crate::tsa::tsa_flow_functions::TypeStateAnalysisFlowFunctions;
 use crate::tsa::tsa_solver::TypeStateAnalysisSolver;
 use crate::tsa::{initial_seed, TSAPathEdge, TSAPathEdgeData, TSAPathEdgeNode};
 use crate::infoflow::ifds::flow_functions::FlowFunctions;
+use crate::util::options::ReportFormat;
 use crate::util::type_util;
 
 pub mod null_state;
 pub mod null_state_transition;
+pub mod sarif;
 pub mod vulnerable_pointer;
 
 /// CFG configuration for memory safety analysis.
@@ -108,6 +112,13 @@ where
     }
 
     pub fn report(&self) {
+        if matches!(
+            self.acx().analysis_options.report_format,
+            ReportFormat::Sarif
+        ) {
+            self.report_sarif();
+            return;
+        }
         if self.error_seeds.is_empty() {
             println!("No bug detected.");
         } else {
@@ -117,6 +128,81 @@ where
             println!("Error seed #{}: {:?} in {:?}", i + 1, error_seed, error_seed.0.containing_function().def_id);
             // self.print_flow_paths_with_error_states(error_seed.clone());
         }
+    }
+
+    /// Emit the detected findings as one SARIF 2.1.0 log on stdout. Each
+    /// error seed is re-analyzed for its end-edge error states so every
+    /// result carries the error kind and the real MIR source span at the
+    /// error location — information the plain-text report does not include.
+    fn report_sarif(&self) {
+        let tcx = self.tcx();
+        let crate_name = tcx.crate_name(LOCAL_CRATE).to_string();
+        let mut findings: Vec<SarifFinding> = Vec::new();
+        for error_seed in &self.error_seeds {
+            for error_node in self.end_with_error_states(error_seed) {
+                let kind = match error_node.1.get_type_state() {
+                    NullState::Error(kind) => kind,
+                    _ => continue,
+                };
+                let unit = error_node.0.as_unit();
+                let func = error_node.0.containing_function();
+                let body = tcx.optimized_mir(func.def_id);
+                let block_data = &body.basic_blocks[unit.location.block];
+                let span = match block_data
+                    .statements
+                    .get(unit.location.statement_index)
+                {
+                    Some(stmt) => stmt.source_info.span,
+                    None => block_data
+                        .terminator
+                        .as_ref()
+                        .expect("valid location has a terminator")
+                        .source_info
+                        .span,
+                };
+                let source_map = tcx.sess.source_map();
+                let start = source_map.lookup_char_pos(span.lo());
+                let end = source_map.lookup_char_pos(span.hi());
+                // span.hi() points one past the last character, so its
+                // 0-based column equals the 1-based inclusive column of the
+                // last character; a column of 0 means the span ends at a
+                // line boundary — omit endColumn instead.
+                let (end_line, end_col) =
+                    if end.col.0 == 0 && end.line > start.line {
+                        (end.line - 1, None)
+                    } else {
+                        (end.line, Some(end.col.0 as u32))
+                    };
+                let uri = match &start.file.name {
+                    rustc_span::FileName::Real(real) => real
+                        .local_path()
+                        .map(|p| p.display().to_string())
+                        .unwrap_or_else(|| format!("{:?}", real)),
+                    other => format!("{:?}", other),
+                };
+                let start_col = start.col.0 as u32 + 1;
+                // Zero-width spans (e.g. a terminator at a block end) can
+                // make the inclusive end column precede the start column;
+                // clamp so the region stays well-formed.
+                let end_col = end_col.map(|col| col.max(start_col));
+                findings.push(SarifFinding {
+                    kind: format!("{:?}", kind),
+                    containing_function: tcx.def_path_str(func.def_id),
+                    uri,
+                    start_line: start.line as u32,
+                    start_col,
+                    end_line: end_line as u32,
+                    end_col,
+                });
+            }
+        }
+        findings.sort();
+        findings.dedup();
+        let log = build_sarif_log(&crate_name, &findings);
+        println!(
+            "{}",
+            serde_json::to_string(&log).expect("SARIF log serializes")
+        );
     }
 
     pub fn analyze_vulnerable_pointer(&mut self, vulnerable_pointer: VulnerablePointer<'tcx>) {

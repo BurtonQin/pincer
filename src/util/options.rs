@@ -48,6 +48,16 @@ impl FromStr for AnalysisKind {
     }
 }
 
+/// The output format for detected findings.
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+pub enum ReportFormat {
+    /// Plain-text diagnostics (the historical output).
+    #[default]
+    Text,
+    /// One SARIF 2.1.0 log printed to stdout.
+    Sarif,
+}
+
 const PINCER_USAGE: &str = r#"pincer [OPTIONS] INPUT -- [RUSTC OPTIONS]"#;
 const DEFAULT_DEREF_LIMIT: usize = 5;
 const CALL_GRAPH_OUTPUT_SUFFIX: &str = "callgraph.dot";
@@ -111,6 +121,11 @@ fn make_options_parser() -> Command<'static> {
             .possible_values(["rta", "memory-safety", "ms"])
             .default_value("memory-safety")
             .help("The analysis mode to run."))
+        .arg(Arg::new("format")
+            .long("format")
+            .takes_value(true)
+            .possible_values(["text", "sarif"])
+            .help("The report format for detected findings."))
         .arg(Arg::new("INPUT")
             .multiple(true)
             .help("The input file to be analyzed.")
@@ -124,6 +139,7 @@ pub struct AnalysisOptions {
     pub crate_name: Option<String>,
     pub output_dir: PathBuf,
     pub analysis_kind: AnalysisKind,
+    pub report_format: ReportFormat,
     pub skip_generics: bool,
     pub access_path_deref_limit: usize,
     pub ignore_rc_drop: bool,
@@ -141,6 +157,7 @@ impl Default for AnalysisOptions {
             output_dir: std::env::current_dir()
                 .unwrap_or_else(|_| std::path::PathBuf::from(".")),
             analysis_kind: AnalysisKind::default(),
+            report_format: ReportFormat::default(),
             skip_generics: false,
             access_path_deref_limit: DEFAULT_DEREF_LIMIT,
             ignore_rc_drop: true,
@@ -215,6 +232,15 @@ impl AnalysisOptions {
         }
         if let Some(analysis) = matches.get_one::<String>("analysis") {
             self.analysis_kind = analysis.parse::<AnalysisKind>().unwrap();
+        }
+        // No default value: absent in a re-parse, the previously parsed
+        // format must survive (options are parsed from both the environment
+        // and the command line).
+        if let Some(format) = matches.get_one::<String>("format") {
+            self.report_format = match format.as_str() {
+                "sarif" => ReportFormat::Sarif,
+                _ => ReportFormat::Text,
+            };
         }
         self.access_path_deref_limit = matches.get_one::<usize>("deref-limit").cloned().unwrap_or(DEFAULT_DEREF_LIMIT);
         self.ignore_rc_drop = !matches.contains_id("analyze-rc-drop");
